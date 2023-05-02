@@ -9,10 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-/**
- *
- * @author omara
- */
 public class Creating_Exams_Project extends Application {
     
     @Override
@@ -38,9 +34,6 @@ public class Creating_Exams_Project extends Application {
         primaryStage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
         
