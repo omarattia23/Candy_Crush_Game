@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMain.java to edit this template
- */
+
 package creating_exams_project;
 
 import javafx.application.Application;
@@ -36,6 +33,7 @@ public class Creating_Exams_Project extends Application {
         Scene scene = new Scene(root, 300, 250);
         
         primaryStage.setTitle("Hello World!");
+        
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -45,6 +43,8 @@ public class Creating_Exams_Project extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
+        System.out.println("Hellooooooooooooooo");
     }
     
 }
