@@ -4,12 +4,24 @@
  */
 package candycrushgame;
 
+import java.util.Optional;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -20,26 +32,29 @@ public class CandyCrushGame extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-                System.out.println("Omar Attia");
-                System.out.println("Mohsen");
-            }
-        });
+       
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
+          // create an Image object from the file path
+          Image pic = new Image("file:C:\\Users\\Desktop\\Documents\\NetBeansProjects\\candygame\\src\\image\\candy-crush-saga-logo_1920.0.jpg");
+      
         
-        Scene scene = new Scene(root, 300, 250);
+         // create a BackgroundImage object with the Image
+       
+         BackgroundImage backgroundImage = new BackgroundImage (pic, null, null,null, new BackgroundSize(BackgroundSize.AUTO,BackgroundSize.AUTO, false , false ,true,false));
+         // create a Background object with the BackgroundImage
+         Background background = new Background(backgroundImage);
         
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+         // create a BorderPane and set the background
+         StackPane root = new StackPane();
+         root.setBackground(background);
+       
+
+         Scene scene = new Scene(root, 1100,734);
+         primaryStage.setScene(scene);
+         primaryStage.setTitle("Candy Crush");
+         primaryStage.setResizable(false);
+        
+         primaryStage.show();
     }
 
     /**
