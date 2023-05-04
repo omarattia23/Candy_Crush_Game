@@ -42,6 +42,7 @@ public class CandyCrash extends Application {
     public static void main(String[] args) {
         launch(args);
         System.out.println("Omar Taha");
+        System.out.println("Omar Attia");
     }
 
 }
