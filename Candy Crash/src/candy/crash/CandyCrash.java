@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author omara
+ * @author DELL
  */
 public class CandyCrash extends Application {
     
