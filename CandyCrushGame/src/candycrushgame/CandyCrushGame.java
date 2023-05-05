@@ -23,6 +23,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.io.File;
 
 /**
  *
@@ -34,11 +35,12 @@ public class CandyCrushGame extends Application {
     public void start(Stage primaryStage) {
        
         
-          // create an Image object from the file path
-          Image pic = new Image("file:C:\\Users\\Desktop\\Documents\\NetBeansProjects\\candygame\\src\\image\\candy-crush-saga-logo_1920.0.jpg");
-      
+        // create an Image object from the file path
+        String projectDir = System.getProperty("user.dir"); // get current project direction
+        String img_dir = "\\src\\image\\candy-crush-saga-logo_1920.0.jpg"; //image dir
+        Image pic = new Image("file:" + projectDir + img_dir);
         
-         // create a BackgroundImage object with the Image
+        // create a BackgroundImage object with the Image
        
          BackgroundImage backgroundImage = new BackgroundImage (pic, null, null,null, new BackgroundSize(BackgroundSize.AUTO,BackgroundSize.AUTO, false , false ,true,false));
          // create a Background object with the BackgroundImage
