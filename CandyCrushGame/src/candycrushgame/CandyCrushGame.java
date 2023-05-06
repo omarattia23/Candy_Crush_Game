@@ -2,6 +2,7 @@ package candycrushgame;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class CandyCrushGame extends Application {
@@ -10,6 +11,11 @@ public class CandyCrushGame extends Application {
     public void start(Stage primaryStage) {
         // create an instance of the MainWindow class
         MainWindow mainWindow = new MainWindow();
+        
+        // create an instance of the popoutWindow class
+        PopoutWindow popoutWindow = new PopoutWindow();
+        popoutWindow.show(); // Show the popout window
+
 
         
         // create a Scene object with the MainWindow as the root
