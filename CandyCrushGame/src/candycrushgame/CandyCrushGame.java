@@ -15,11 +15,7 @@ public class CandyCrushGame extends Application {
         // create an instance of the popoutWindow class
         PopoutWindow popoutWindow = new PopoutWindow();
         popoutWindow.show(); // Show the popout window
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> b956141512ed6fd2a26d364813e72853a4093fd0
         // create a Scene object with the MainWindow as the root
         Scene scene = new Scene(mainWindow, 1100, 734);
         primaryStage.setScene(scene);
