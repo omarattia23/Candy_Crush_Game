@@ -16,14 +16,15 @@ import javafx.stage.Stage;
 public class LoadingImages extends Application {
 
     private static final String[] IMAGE_PATHS = {
-        "C:\\Users\\DELL\\Desktop\\photos\\1.jpg",
-        "C:\\Users\\DELL\\Desktop\\photos\\2.jpg",
-        "C:\\Users\\DELL\\Desktop\\photos\\3.jpg",
-        "C:\\Users\\DELL\\Desktop\\photos\\4.jpg",
-        "C:\\Users\\DELL\\Desktop\\photos\\5.jpg",
-        "C:\\Users\\DELL\\Desktop\\photos\\6.jpg",
-        "C:\\Users\\DELL\\Desktop\\photos\\7.jpg",
-        "C:\\Users\\DELL\\Desktop\\photos\\8.jpg",};
+        "src\\items\\1.png",
+        "src\\items\\2.png",
+        "src\\items\\3.png",
+        "src\\items\\4.png",
+        "src\\items\\5.png",
+        "src\\items\\6.png",
+        "src\\items\\7.png",
+        "src\\items\\8.jpeg",
+        };
 
     private static final int NUM_IMAGES = 64;
     private static final int GRID_SIZE = 8;

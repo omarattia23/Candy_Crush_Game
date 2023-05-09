@@ -1,62 +1,89 @@
-
 package candycrushgame;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import static javafx.scene.paint.Color.color;
 import javafx.stage.Stage;
 
+class btn extends Button {
+
+    public btn(String s) {
+
+        setMinSize(270, 40);
+        setText(s);
+        setOpacity(0.8);
+        
+    }
+}
+
 public class PopoutWindow extends Stage {
-    public PopoutWindow(){
-         // Create the layout for the popout window
-        HBox layout1 = new HBox();
-           
-          Label lbl = new Label();
-          lbl.setLayoutX(50);
-          lbl.setLayoutY(50);
-          lbl.setTranslateX(180);
-          lbl.setTranslateY(140);
-          
-          lbl.setTextFill(Color.PURPLE);
-          
+
+    public PopoutWindow() {
+        // Create the layout for the popout window
+        HBox layout1 = new HBox(10);
+        HBox layout2 = new HBox(10);
+        HBox layout3 = new HBox(10);
+        VBox root = new VBox();
+        //padding
+        layout2.setPadding(new Insets(7));
+        // center
+        layout1.setAlignment(Pos.BASELINE_CENTER);
+        layout2.setAlignment(Pos.BASELINE_CENTER);
+        layout3.setAlignment(Pos.BASELINE_CENTER);
+        //create Label
+        Label lbl = new Label("GoodMorning");
+        //lbl size
+        
+//        lbl.setTextFill(Color.PURPLE);
+        lbl.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE, null, new Insets(10))));
+        lbl.setOpacity(0.8);
+        // create buttons
+        btn newgamebtn = new btn("New Game");
+        btn closeButton = new btn("Close");
+
+        // add items
         layout1.getChildren().add(lbl);
-        
-        
-        
-        
-        HBox layout2 = new HBox();
-        Button newgamebtn = new Button("New Game");
-        Button closeButton = new Button("Close");
-        
-      
-        newgamebtn.setLayoutX(200);
-        newgamebtn.setLayoutY(150);
-        closeButton.setLayoutX(200);
-        closeButton.setLayoutY(150);
-        layout2.getChildren().add(closeButton);
         layout2.getChildren().add(newgamebtn);
-        newgamebtn.setTranslateX(50);
-        newgamebtn.setTranslateY(70);
-        closeButton.setTranslateX(110);
-        closeButton.setTranslateY(105);
-        
+        layout3.getChildren().add(closeButton);
+//        
+
         // Create the scene for the popout window
-        VBox root = new VBox () ;
-        root.getChildren().addAll(layout1,layout2) ;
-      
-        Scene scene = new Scene(root, 250, 250,Color.BLANCHEDALMOND);
-       
+        root.getChildren().addAll(layout1, layout2, layout3);
+        root.setAlignment(Pos.BOTTOM_CENTER);
+        root.setPadding(new Insets(40));
+        Scene scene = new Scene(root, 300, 350);
+        
+        // create an Image object from the file path
+        String projectDir = System.getProperty("user.dir"); // get current project direction
+        String img_dir = "\\src\\image\\candy-crush-saga-logo_1920.0.jpg"; //image dir
+        Image pic = new Image("file:" + projectDir + img_dir);
+
+        // create a BackgroundImage object with the Image
+        BackgroundImage backgroundImage = new BackgroundImage(pic, null, null, null, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
+
+        // create a Background object with the BackgroundImage
+        Background background = new Background(backgroundImage);
+
+        // set the background to the root StackPane object
+        root.setBackground(background);
+        
         // Set the scene for the popout window
-       
-        this.show();
         this.setScene(scene);
         this.setTitle("Candy Crush");
+        this.show();
     }
-    
+
 }
