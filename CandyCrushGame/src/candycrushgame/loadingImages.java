@@ -1,3 +1,4 @@
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
@@ -13,17 +14,18 @@ import javafx.stage.Stage;
 public class loadingImages extends Application {
 
     private static final String[] IMAGE_PATHS = {
-        "D:\\ENGINEERING\\2nd Electric\\Second Term\\Java\\items\\1.png",
-        "D:\\ENGINEERING\\2nd Electric\\Second Term\\Java\\items\\2.png",
-        "D:\\ENGINEERING\\2nd Electric\\Second Term\\Java\\items\\3.png",
-        "D:\\ENGINEERING\\2nd Electric\\Second Term\\Java\\items\\4.png",
-        "D:\\ENGINEERING\\2nd Electric\\Second Term\\Java\\items\\5.png",
-        "D:\\ENGINEERING\\2nd Electric\\Second Term\\Java\\items\\6.png",
-        "D:\\ENGINEERING\\2nd Electric\\Second Term\\Java\\items\\7.png",
-        "D:\\ENGINEERING\\2nd Electric\\Second Term\\Java\\items\\8.jpeg",
+        "src\\items\\1.png",
+        "src\\items\\2.png",
+        "src\\items\\3.png",
+        "src\\items\\4.png",
+        "src\\items\\5.png",
+        "src\\items\\6.png",
+        "src\\items\\7.png",
+        "src\\items\\8.jpeg",
         
-    };
-    
+        
+      };
+
     private static final int NUM_IMAGES = 64;
     private static final int GRID_SIZE = 8;
 
