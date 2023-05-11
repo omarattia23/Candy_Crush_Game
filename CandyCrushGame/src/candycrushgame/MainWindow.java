@@ -1,9 +1,9 @@
 package candycrushgame;
 
 import java.util.Optional;
-import static javafx.application.Application.launch;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -11,7 +11,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 class Butt extends Button {
@@ -25,7 +24,9 @@ class Butt extends Button {
 
 }
 
-public class MainWindow extends StackPane {
+public class MainWindow {
+    private Scene scene1;
+    private Button btnnewgame;
 
     public MainWindow() {
 
@@ -40,11 +41,10 @@ public class MainWindow extends StackPane {
         // create a Background object with the BackgroundImage
         Background background = new Background(backgroundImage);
 
-        // set the background to the root StackPane object
-        setBackground(background);
+        
 
-        // creating 3 buttons 
-        Butt btnnewgame = new Butt("NEW GAME ");
+        // creating 2 buttons 
+        btnnewgame = new Butt("NEW GAME ");
         // Button btnscores=new Button("SCORES ");
         Butt btnExit = new Butt("EXIT ");
         //  btnnewgame.setStyle("-fx-background-color: #ff0000;");
@@ -55,6 +55,8 @@ public class MainWindow extends StackPane {
         v.getChildren().addAll(btnnewgame, btnExit);
         // to make VBox in center .
         v.setAlignment(Pos.CENTER);
+        // set the background to the root StackPane object
+        v.setBackground(background);
 
         //btnExit.setOpacity(0.8);
         //MAKE exit action for btnExit
@@ -69,13 +71,17 @@ public class MainWindow extends StackPane {
                 Platform.exit();
             }
         });
+        
 
-         getChildren().addAll(v);
-
+//         getChildren().addAll(v);
+         scene1 = new Scene(v, 1100, 734);
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    public Scene getScene1(){
+        return scene1;
+    }
+    public Button btnnewgame(){
+        return btnnewgame;
     }
 
 }

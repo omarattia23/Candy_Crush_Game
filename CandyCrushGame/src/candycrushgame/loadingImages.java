@@ -1,4 +1,4 @@
-
+package candycrushgame;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
@@ -13,8 +13,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class LoadingImages extends Application {
-
+public class LoadingImages {
+    private Scene scene2;
     private static final String[] IMAGE_PATHS = {
         "src\\items\\1.png",
         "src\\items\\2.png",
@@ -29,8 +29,7 @@ public class LoadingImages extends Application {
     private static final int NUM_IMAGES = 64;
     private static final int GRID_SIZE = 8;
 
-    @Override
-    public void start(Stage stage) {
+    public LoadingImages(){
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(110));
         gridPane.setHgap(2);
@@ -63,12 +62,11 @@ public class LoadingImages extends Application {
             System.out.println("Clicked image position: row=" + row + ", col=" + col);
         });
 
-        Scene scene = new Scene(gridPane, 900, 900);
-        stage.setScene(scene);
-        stage.show();
+        scene2 = new Scene(gridPane, 900, 900);
+        
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    public Scene getScene2(){
+        return scene2;
     }
 }
