@@ -16,11 +16,15 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import static javafx.scene.paint.Color.color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
 
 class btn extends Button {
 
@@ -48,12 +52,16 @@ public class PopoutWindow extends Stage {
         layout2.setAlignment(Pos.BASELINE_CENTER);
         layout3.setAlignment(Pos.BASELINE_CENTER);
         //create Label
-        Label lbl = new Label("GoodMorning");
+        Label lbl = new Label("Congratulation");
         //lbl size
-        
+        lbl.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+        lbl.setFont(new Font("Cambria",32));
+        lbl.setPadding(new Insets(7));
+        lbl.setTextFill(Color.PURPLE);
 //        lbl.setTextFill(Color.PURPLE);
-        lbl.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE, null, new Insets(10))));
+//        lbl.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE, null, new Insets(10))));
         lbl.setOpacity(0.8);
+        
         // create buttons
         btn newgamebtn = new btn("New Game");
         btn closeButton = new btn("Close");
@@ -69,34 +77,35 @@ public class PopoutWindow extends Stage {
                 Platform.exit();
             }
         });
-        
-        
 
         // add items
         layout1.getChildren().add(lbl);
         layout2.getChildren().add(newgamebtn);
         layout3.getChildren().add(closeButton);
-//        
+        // add background        
+        Pane pop = new Pane();
 
-        // Create the scene for the popout window
-        root.getChildren().addAll(layout1, layout2, layout3);
-        root.setAlignment(Pos.BOTTOM_CENTER);
-        root.setPadding(new Insets(40));
-        Scene scene = new Scene(root, 300, 350);
-        
         // create an Image object from the file path
         String projectDir = System.getProperty("user.dir"); // get current project direction
-        String img_dir = "\\src\\image\\candy-crush-saga-logo_1920.0.jpg"; //image dir
-        Image pic = new Image("file:" + projectDir + img_dir);
+        String img_dir = "\\src\\image\\popout.jpg"; //image dir
+        Image image = new Image("file:" + projectDir + img_dir);
 
         // create a BackgroundImage object with the Image
-        BackgroundImage backgroundImage = new BackgroundImage(pic, null, null, null, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
+        BackgroundImage backgroundImage = new BackgroundImage(image, null, null, null, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
 
         // create a Background object with the BackgroundImage
         Background background = new Background(backgroundImage);
 
         // set the background to the root StackPane object
         root.setBackground(background);
+
+        // Create the scene for the popout window
+        root.getChildren().addAll(layout1, layout2, layout3);
+        root.setAlignment(Pos.BOTTOM_CENTER);
+        root.setPadding(new Insets(40));
+        Scene scene = new Scene(root, 300, 350);
+         
+      
         
         // Set the scene for the popout window
         this.setScene(scene);
