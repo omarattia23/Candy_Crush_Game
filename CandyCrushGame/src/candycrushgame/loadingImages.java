@@ -55,17 +55,7 @@ public class LoadingImages {
                 System.out.println("Failed to load image: " + imagePath);
             }
         }
-        gridPane.setOnMouseClicked(event -> {
-            // Get the clicked image view
-            ImageView clickedImageView = (ImageView) event.getTarget();
-
-            // Get the position of the clicked image view
-            int row = GridPane.getRowIndex(clickedImageView);
-            int col = GridPane.getColumnIndex(clickedImageView);
-
-            // Print the position to the console
-            System.out.println("Clicked image position: row=" + row + ", col=" + col);
-        });
+        
 
         scene2 = new Scene(gridPane, 900, 900);
 
@@ -116,7 +106,6 @@ public class LoadingImages {
     }
 
     /*******************************************************************************/
-    
     /******************************swapping***************************************/
     /*******************************************************************************/
 
