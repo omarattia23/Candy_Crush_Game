@@ -1,11 +1,15 @@
 package candycrushgame;
 
+import java.util.Optional;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -53,6 +57,20 @@ public class PopoutWindow extends Stage {
         // create buttons
         btn newgamebtn = new btn("New Game");
         btn closeButton = new btn("Close");
+        // set close button on action
+         closeButton.setOnAction(e -> {
+
+            Alert A = new Alert(Alert.AlertType.CONFIRMATION);
+            A.setTitle("Confirm Exit");
+            A.setHeaderText("Are you sure , you want to exit ?");
+            A.setContentText("Pay attention please, All unsaved changes will be lost.");
+            Optional<ButtonType> result = A.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                Platform.exit();
+            }
+        });
+        
+        
 
         // add items
         layout1.getChildren().add(lbl);
