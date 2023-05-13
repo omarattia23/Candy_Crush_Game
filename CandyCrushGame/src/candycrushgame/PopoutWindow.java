@@ -5,10 +5,8 @@ import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -18,10 +16,8 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import static javafx.scene.paint.Color.color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -66,7 +62,7 @@ public class PopoutWindow extends Stage {
         btn newgamebtn = new btn("New Game");
         btn closeButton = new btn("Close");
         // set close button on action
-         closeButton.setOnAction(e -> {
+        closeButton.setOnAction(e -> {
 
             Alert A = new Alert(Alert.AlertType.CONFIRMATION);
             A.setTitle("Confirm Exit");

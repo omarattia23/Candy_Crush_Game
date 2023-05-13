@@ -16,9 +16,8 @@ import javafx.scene.text.Font;
 
 class lbl extends Label{
     public lbl(String s){
-        setMinSize(60, 40);
+        setMinSize(60, 30);
         setText(s);
-        setPadding(new Insets(10));
         setFont(new Font("Cambria",32));
     }
 }
@@ -57,8 +56,8 @@ public class LoadingImages {
             try {
                 Image image = new Image(path.toUri().toString());
                 ImageView imageView = new ImageView(image);
-                imageView.setFitWidth(80);
-                imageView.setFitHeight(80);
+                imageView.setFitWidth(70);
+                imageView.setFitHeight(70);
                 int row = i / GRID_SIZE;
                 int col = i % GRID_SIZE;
                 gridPane.add(imageView, col, row);
@@ -66,28 +65,36 @@ public class LoadingImages {
                 System.out.println("Failed to load image: " + imagePath);
             }
         }
+        // Creating objection of level & scores
+        Level_Scores levelScores = new Level_Scores();
+        levelScores.saveLevelScore();
+        levelScores.loadLevelScore();
+        int level = levelScores.level();
+        String score = levelScores.getScore();
         // set labels 
         lbl scoreLbl0 = new lbl("Score:");
-        lbl scorelbl1 = new lbl("0");
+        lbl scorelbl1 = new lbl(score);
         lbl movesLbl0 = new lbl("Moves:");
-        lbl movesLbl1 = new lbl("10");
+        lbl movesLbl1 = new lbl(""+levelScores.getmoves());
         lbl Level0 = new lbl("Level:");
-        lbl Level1 = new lbl("1");
+        lbl Level1 = new lbl(""+level);
         
         // add the labels and gridpane
-        h.getChildren().addAll(scoreLbl0,
-                               scorelbl1,
-                               movesLbl0,
-                               movesLbl1,
-                               Level0,
-                               Level1);
+        h.getChildren().addAll( scoreLbl0,
+                                scorelbl1,
+                                movesLbl0,
+                                movesLbl1,
+                                Level0,
+                                Level1);
         
         v.getChildren().addAll(h,gridPane);
         
         h.setAlignment(Pos.CENTER);
+        h.setSpacing(20);
+        v.setAlignment(Pos.CENTER);
         
         // Create a new scene
-        scene2 = new Scene(v,700,800);
+        scene2 = new Scene(v,600,650);
 
         /*******************************************************************************/
         /*******************************************************************************/
@@ -132,7 +139,7 @@ public class LoadingImages {
             }
             System.out.println("row1=" + location[0] + ",col1=" + location[1] + ",row2=" + location[2] + ",col2=" + location[3]);
         });
-
+        
     }
 
     /*******************************************************************************/

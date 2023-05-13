@@ -13,13 +13,13 @@ public class CandyCrushGame extends Application {
         // create an instance of the LoadingImages class
         LoadingImages LoadingImages = new LoadingImages();
         // create an instance of the popoutWindow class
-        PopoutWindow popoutWindow = new PopoutWindow();
-        popoutWindow.show();             // Show the popout window
-        
+//        PopoutWindow popoutWindow = new PopoutWindow();
+//        popoutWindow.show();             // Show the popout window
+//        
         // create a Scene object with the MainWindow as the root
         
         primaryStage.setScene(mainWindow.getScene1());
-        mainWindow.btnnewgame().setOnAction(e->{
+        mainWindow.newgamebtn().setOnAction(e->{
         primaryStage.setScene(LoadingImages.getScene2());});
         primaryStage.setTitle("Candy Crush");
         primaryStage.setResizable(false);
