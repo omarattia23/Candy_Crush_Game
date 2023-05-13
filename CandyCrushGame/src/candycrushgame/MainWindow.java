@@ -64,8 +64,8 @@ public class MainWindow {
 
             Alert A = new Alert(Alert.AlertType.CONFIRMATION);
             A.setTitle("Confirm Exit");
-            A.setHeaderText("Are you sure , you want to exit ?");
-            A.setContentText("Pay attention please, All unsaved changes will be lost.");
+            A.setContentText("Are you sure , you want to exit ?");
+//            A.setContentText("Pay attention please, All unsaved changes will be lost.");
             Optional<ButtonType> result = A.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 Platform.exit();

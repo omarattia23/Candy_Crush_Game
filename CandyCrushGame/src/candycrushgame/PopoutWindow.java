@@ -70,8 +70,8 @@ public class PopoutWindow extends Stage {
 
             Alert A = new Alert(Alert.AlertType.CONFIRMATION);
             A.setTitle("Confirm Exit");
-            A.setHeaderText("Are you sure , you want to exit ?");
-            A.setContentText("Pay attention please, All unsaved changes will be lost.");
+            A.setContentText("Are you sure , you want to exit ?");
+//          A.setContentText("Pay attention please, All unsaved changes will be lost.");
             Optional<ButtonType> result = A.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 Platform.exit();
@@ -82,8 +82,7 @@ public class PopoutWindow extends Stage {
         layout1.getChildren().add(lbl);
         layout2.getChildren().add(newgamebtn);
         layout3.getChildren().add(closeButton);
-        // add background        
-        Pane pop = new Pane();
+
 
         // create an Image object from the file path
         String projectDir = System.getProperty("user.dir"); // get current project direction

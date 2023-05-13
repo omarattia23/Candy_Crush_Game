@@ -3,16 +3,25 @@ package candycrushgame;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
-import javafx.application.Application;
-import static javafx.application.Application.launch;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+
+class lbl extends Label{
+    public lbl(String s){
+        setMinSize(60, 40);
+        setText(s);
+        setPadding(new Insets(10));
+        setFont(new Font("Cambria",32));
+    }
+}
 
 public class LoadingImages {
 
@@ -33,10 +42,12 @@ public class LoadingImages {
         "src\\items\\6.png",
         "src\\items\\7.png",
         "src\\items\\8.jpeg",};
-
+    
     public LoadingImages() {
+        VBox v = new VBox();
+        HBox h = new HBox();
         GridPane gridPane = new GridPane();
-        gridPane.setPadding(new Insets(110));
+        gridPane.setPadding(new Insets(20));
         gridPane.setHgap(2);
         gridPane.setVgap(2);
         Random random = new Random();
@@ -55,9 +66,28 @@ public class LoadingImages {
                 System.out.println("Failed to load image: " + imagePath);
             }
         }
+        // set labels 
+        lbl scoreLbl0 = new lbl("Score:");
+        lbl scorelbl1 = new lbl("0");
+        lbl movesLbl0 = new lbl("Moves:");
+        lbl movesLbl1 = new lbl("10");
+        lbl Level0 = new lbl("Level:");
+        lbl Level1 = new lbl("1");
         
-
-        scene2 = new Scene(gridPane, 900, 900);
+        // add the labels and gridpane
+        h.getChildren().addAll(scoreLbl0,
+                               scorelbl1,
+                               movesLbl0,
+                               movesLbl1,
+                               Level0,
+                               Level1);
+        
+        v.getChildren().addAll(h,gridPane);
+        
+        h.setAlignment(Pos.CENTER);
+        
+        // Create a new scene
+        scene2 = new Scene(v,700,800);
 
         /*******************************************************************************/
         /*******************************************************************************/
