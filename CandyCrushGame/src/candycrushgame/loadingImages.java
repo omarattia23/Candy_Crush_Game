@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 import javafx.scene.text.Font;
 
 class lbl extends Label{
@@ -30,7 +31,6 @@ public class LoadingImages {
     int[] location = new int[4];
     ImageView temp = new ImageView();
     int k = 0;
-
     private Scene scene2;
     private static final String[] IMAGE_PATHS = {
         "src\\items\\1.png",
@@ -41,6 +41,8 @@ public class LoadingImages {
         "src\\items\\6.png",
         "src\\items\\7.png",
         "src\\items\\8.jpeg",};
+    
+          
     
     public LoadingImages() {
         VBox v = new VBox();
@@ -120,7 +122,9 @@ public class LoadingImages {
                 }
             }
             if (temp != null && clickedImageView != null) {
-                if ((Math.abs(row - prevRow) == 1 && col == prevCol) || (Math.abs(row - prevRow) == 0 || col == prevCol)) {
+                if ((Math.abs(row - prevRow) == 1 && col == prevCol) || 
+                        (Math.abs(row - prevRow) == 0 || 
+                        col == prevCol)) {
                     swapImages(gridPane, temp, clickedImageView);
                 }
             }
