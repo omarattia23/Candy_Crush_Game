@@ -1,5 +1,6 @@
 package candycrushgame;
 
+import java.io.File;
 import java.util.Optional;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -26,16 +27,14 @@ public class MainWindow {
 
     public MainWindow() {
 
-       
-
-        // creating 2 buttons 
+        // creating 2 buttons
         newgamebtn = new btn("NEW GAME ");
         // Button btnscores=new Button("SCORES ");
         btn exitbtn = new btn("EXIT ");
-        //  btnnewgame.setStyle("-fx-background-color: #ff0000;");
+        // btnnewgame.setStyle("-fx-background-color: #ff0000;");
 
-        //creating vertical box (vbox) and add 3 Button in vbox
-        //VBox(10) to make 10 pixel between button
+        // creating vertical box (vbox) and add 3 Button in vbox
+        // VBox(10) to make 10 pixel between button
         VBox v = new VBox(10);
 
         // getChildren() to add buttons in vbox
@@ -45,27 +44,27 @@ public class MainWindow {
         // set the background
 
         String projectDir = System.getProperty("user.dir"); // get current project directory
-        
-        String img_dir = "/src/image/candy-crush-saga-logo_1920.0.jpg"; // image directory
-        v.setStyle("-fx-background-image: url('file:" + projectDir.replace("\\", "/") + img_dir + "'); "
+        File imgFile = new File(projectDir, "src/image/candy-crush-saga-logo_1920.0.jpg");
+        String imgPath = imgFile.toURI().toString();
+        v.setStyle("-fx-background-image: url('" + imgPath + "'); "
                 + "-fx-background-position: center center; "
                 + "-fx-background-repeat: stretch;");
 
-        //btnExit.setOpacity(0.8);
-        //set highscorebtn on action
-        //MAKE exit action for exitbtn
+        // btnExit.setOpacity(0.8);
+        // set highscorebtn on action
+        // MAKE exit action for exitbtn
         exitbtn.setOnAction(e -> {
             Alert A = new Alert(Alert.AlertType.CONFIRMATION);
             A.setTitle("Confirm Exit");
             A.setContentText("Are you sure , you want to exit ?");
-//            A.setContentText("Pay attention please, All unsaved changes will be lost.");
+            // A.setContentText("Pay attention please, All unsaved changes will be lost.");
             Optional<ButtonType> result = A.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 Platform.exit();
             }
         });
 
-//         getChildren().addAll(v);
+        // getChildren().addAll(v);
         scene1 = new Scene(v, 600, 650);
     }
 
