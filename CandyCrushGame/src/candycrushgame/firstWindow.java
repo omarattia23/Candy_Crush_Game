@@ -20,12 +20,12 @@ class btn extends Button {
 
 }
 
-public class MainWindow {
+public class firstWindow {
 
     private Scene scene1;
     private Button newgamebtn;
 
-    public MainWindow() {
+    public firstWindow() {
 
         // creating 2 buttons
         newgamebtn = new btn("NEW GAME ");
@@ -45,6 +45,8 @@ public class MainWindow {
 
         String projectDir = System.getProperty("user.dir"); // get current project directory
         File imgFile = new File(projectDir, "src/image/candy-crush-saga-logo_1920.0.jpg");
+        
+        
         String imgPath = imgFile.toURI().toString();
         v.setStyle("-fx-background-image: url('" + imgPath + "'); "
                 + "-fx-background-position: center center; "

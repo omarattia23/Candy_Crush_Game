@@ -6,5 +6,8 @@
         "org.graalvm.*",
         "io.micrometer.shaded.*"
     ],
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "files.associations": {
+        "dio_config.h": "c"
+    }
 }

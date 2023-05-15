@@ -6,6 +6,7 @@ import java.util.Random;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,15 +16,16 @@ import javafx.scene.layout.VBox;
 
 import javafx.scene.text.Font;
 
-class lbl extends Label{
-    public lbl(String s){
+class lbl extends Label {
+
+    public lbl(String s) {
         setMinSize(60, 30);
         setText(s);
-        setFont(new Font("Cambria",32));
+        setFont(new Font("Cambria", 32));
     }
 }
 
-public class LoadingImages {
+public class secondWindow {
 
     private static final int NUM_IMAGES = 64;
     private static final int GRID_SIZE = 8;
@@ -32,6 +34,7 @@ public class LoadingImages {
     ImageView temp = new ImageView();
     int k = 0;
     private Scene scene2;
+    
     private static final String[] IMAGE_PATHS = {
         "src\\items\\1.png",
         "src\\items\\2.png",
@@ -40,11 +43,9 @@ public class LoadingImages {
         "src\\items\\5.png",
         "src\\items\\6.png",
         "src\\items\\7.png",
-        "src\\items\\8.jpeg",};
-    
-          
-    
-    public LoadingImages() {
+        "src\\items\\8.jpeg"};
+
+    public secondWindow() {
         VBox v = new VBox();
         HBox h = new HBox();
         GridPane gridPane = new GridPane();
@@ -57,49 +58,59 @@ public class LoadingImages {
             Path path = Paths.get(imagePath);
             try {
                 Image image = new Image(path.toUri().toString());
+                Button button = new Button();
                 ImageView imageView = new ImageView(image);
-                imageView.setFitWidth(70);
-                imageView.setFitHeight(70);
+                imageView.setFitWidth(55);
+                imageView.setFitHeight(55);
+                button.setGraphic(imageView);
+//                button.setOnMouseClicked(e -> handleClick(button));
                 int row = i / GRID_SIZE;
                 int col = i % GRID_SIZE;
-                gridPane.add(imageView, col, row);
+                String buttonId = "button_" + i; // generate unique id for each button
+                button.setId(buttonId);
+                gridPane.add(button, col, row);
             } catch (Exception e) {
                 System.out.println("Failed to load image: " + imagePath);
             }
         }
+
         // Creating objection of level & scores
         Level_Scores levelScores = new Level_Scores();
         levelScores.saveLevelScore();
-        levelScores.loadLevelScore();
-        int level = levelScores.level();
-        String score = levelScores.getScore();
+//        levelScores.loadLevelScore();
+        int level = 1;//levelScores.level();
+        String score = "0";//levelScores.getScore();
         // set labels 
         lbl scoreLbl0 = new lbl("Score:");
         lbl scorelbl1 = new lbl(score);
         lbl movesLbl0 = new lbl("Moves:");
-        lbl movesLbl1 = new lbl(""+levelScores.getmoves());
+        lbl movesLbl1 = new lbl("" /* +levelScores.getmoves()*/);
         lbl Level0 = new lbl("Level:");
-        lbl Level1 = new lbl(""+level);
-        
+        lbl Level1 = new lbl("" + level);
+
         // add the labels and gridpane
-        h.getChildren().addAll( scoreLbl0,
-                                scorelbl1,
-                                movesLbl0,
-                                movesLbl1,
-                                Level0,
-                                Level1);
-        
-        v.getChildren().addAll(h,gridPane);
-        
+        h.getChildren().addAll(scoreLbl0,
+                scorelbl1,
+                movesLbl0,
+                movesLbl1,
+                Level0,
+                Level1);
+
+        v.getChildren().addAll(h, gridPane);
+
         h.setAlignment(Pos.CENTER);
         h.setSpacing(20);
         v.setAlignment(Pos.CENTER);
-        
-        // Create a new scene
-        scene2 = new Scene(v,600,650);
 
-        /*******************************************************************************/
-        /*******************************************************************************/
+        // Create a new scene
+        scene2 = new Scene(v, 600, 650);
+
+        /**
+         * ****************************************************************************
+         */
+        /**
+         * ****************************************************************************
+         */
         gridPane.setOnMouseClicked(event -> {
             // Get the clicked image view
             ImageView clickedImageView = (ImageView) event.getTarget();
@@ -122,9 +133,9 @@ public class LoadingImages {
                 }
             }
             if (temp != null && clickedImageView != null) {
-                if ((Math.abs(row - prevRow) == 1 && col == prevCol) || 
-                        (Math.abs(row - prevRow) == 0 || 
-                        col == prevCol)) {
+                if ((Math.abs(row - prevRow) == 1 && col == prevCol)
+                        || (Math.abs(row - prevRow) == 0
+                        || col == prevCol)) {
                     swapImages(gridPane, temp, clickedImageView);
                 }
             }
@@ -143,14 +154,18 @@ public class LoadingImages {
             }
             System.out.println("row1=" + location[0] + ",col1=" + location[1] + ",row2=" + location[2] + ",col2=" + location[3]);
         });
-        
+
     }
 
-    /*******************************************************************************/
-    /******************************swapping***************************************/
-    /*******************************************************************************/
-
-    
+    /**
+     * ****************************************************************************
+     */
+    /**
+     * ****************************swapping**************************************
+     */
+    /**
+     * ****************************************************************************
+     */
     private void swapImages(GridPane gridPane, ImageView imageView1, ImageView imageView2) {
         int row1 = GridPane.getRowIndex(imageView1);
         int col1 = GridPane.getColumnIndex(imageView1);
@@ -167,8 +182,7 @@ public class LoadingImages {
         gridPane.add(imageView2, col1, row1);
     }
 
-
-public Scene getScene2(){
+    public Scene getScene2() {
         return scene2;
     }
 }

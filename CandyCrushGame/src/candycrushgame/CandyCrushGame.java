@@ -30,22 +30,20 @@ public class CandyCrushGame extends Application {
         //
 
         // create an instance of the MainWindow class
-        MainWindow mainWindow = new MainWindow();
+        firstWindow firstWindow = new firstWindow();
         // create an instance of the LoadingImages class
-        LoadingImages LoadingImages = new LoadingImages();
+        secondWindow secondWindow = new secondWindow();
         // create an instance of the popoutWindow class
         // PopoutWindow popoutWindow = new PopoutWindow();
         // popoutWindow.show(); // Show the popout window
 
         // create a Scene object with the MainWindow as the root
 
-        primaryStage.setScene(mainWindow.getScene1());
-        mainWindow.newgamebtn().setOnAction(e -> {
-            primaryStage.setScene(LoadingImages.getScene2());
-        });
+        primaryStage.setScene(firstWindow.getScene1());
+        
 
-        mainWindow.newgamebtn().setOnAction(e -> {
-            primaryStage.setScene(LoadingImages.getScene2());
+        firstWindow.newgamebtn().setOnAction(e -> {
+            primaryStage.setScene(secondWindow.getScene2());
             mediaPlayer.stop();
             mediaPlayer1.play();
         });

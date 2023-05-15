@@ -8,8 +8,12 @@ public class Level_Scores {
     private int score = 0;
     private int move = 25;
     private int level;
-    private String projectDir = System.getProperty("user.id");
-
+    private String projectDir; // = System.getProperty("user.dir");
+        
+    public Level_Scores(){
+         projectDir = System.getProperty("user.dir");
+         System.out.println(System.getProperty("user.dir"));
+    }
     public int level() {
         if (score <= 100) {
             level = 1;
@@ -89,6 +93,7 @@ public class Level_Scores {
             bw.write("Score: " + score);
             bw.close();
             System.out.println("Level and score saved to file.");
+            fw.close();
         } catch (IOException e) {
             System.out.println("Error occurred while saving level and score to file.");
             e.printStackTrace();
