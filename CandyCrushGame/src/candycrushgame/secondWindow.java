@@ -86,18 +86,20 @@ public class secondWindow {
 
         // Creating objection of level & scores
         Level_Scores levelScores = new Level_Scores();
-
+        int lvl = levelScores.level();
+        String sc = levelScores.getScore();
+        int mv = levelScores.getmoves();
         levelScores.saveLevelScore();
 //        levelScores.loadLevelScore();
-        int level = 1;//levelScores.level();
-        String score = "0";//levelScores.getScore();
+        
+        
         // set labels 
         lbl scoreLbl0 = new lbl("Score:");
-        lbl scorelbl1 = new lbl(score);
+        lbl scorelbl1 = new lbl(sc);
         lbl movesLbl0 = new lbl("Moves:");
-        lbl movesLbl1 = new lbl("" /* +levelScores.getmoves()*/);
+        lbl movesLbl1 = new lbl("" +mv);
         lbl Level0 = new lbl("Level:");
-        lbl Level1 = new lbl("" + level);
+        lbl Level1 = new lbl("" + lvl);
 
         // add the labels and gridpane
         h.getChildren()
