@@ -7,7 +7,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-public class CandyCrushGame extends Application {
+public class Main extends Application {
 
     @Override
 
