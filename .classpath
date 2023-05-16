@@ -2,5 +2,6 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="Candy Crash/src"/>
+	<classpathentry kind="src" path="CandyCrushGame/src/candycrushgame"/>
 	<classpathentry kind="output" path="Candy Crash/build/classes"/>
 </classpath>

@@ -22,11 +22,13 @@ public class CandyCrushGame extends Application {
         Media media = new Media(s1);
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
+        
         // sound of game
         File s2 = new File(projectDir, "/src/sound/game.wav");
         String s3 = s2.toURI().toString();
         Media media1 = new Media(s3);
         MediaPlayer mediaPlayer1 = new MediaPlayer(media1);
+        mediaPlayer1.setOnEndOfMedia(() -> mediaPlayer1.seek(javafx.util.Duration.ZERO));
         //
 
         // create an instance of the MainWindow class
