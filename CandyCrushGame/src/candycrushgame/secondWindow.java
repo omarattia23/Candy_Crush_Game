@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -56,7 +57,7 @@ public class secondWindow {
         gridPane.setHgap(2);
         gridPane.setVgap(2);
         Random random = new Random();
-        logic logic = new logic();
+        
 
         for (int i = 0; i < NUM_IMAGES; i++) {
             String imagePath = IMAGE_PATHS[random.nextInt(IMAGE_PATHS.length)];
@@ -76,7 +77,7 @@ public class secondWindow {
                 String imageId = "image_" + imagePath.hashCode(); // generate unique id for each image
 
                 button.setId(buttonId);
-                button.setOnAction(e -> logic.handleButtonClick(button, gridPane, selectedButtons));
+                button.setOnAction(e -> handleButtonClick(button, gridPane, selectedButtons));
 
                 imageView.setId(imageId);
 
@@ -121,83 +122,76 @@ public class secondWindow {
 
         // Create a new scene
         scene2 = new Scene(v, 600, 650);
-        /**
-         * ****************************************************************************
-         */
-        /**
-         * ****************************************************************************
-         */
-        //        gridPane.setOnMouseClicked(event
-        //                -> {
-        //            // Get the clicked image view
-        //            ImageView clickedImageView = (ImageView) event.getTarget();
-        //            // Get the position of the clicked image view
-        //            int row = GridPane.getRowIndex(clickedImageView);
-        //            int col = GridPane.getColumnIndex(clickedImageView);
-        //            location[0] = prevRow;
-        //            location[1] = prevCol;
-        //            // Print the position to the console
-        //            System.out.println("Clicked image position: row=" + row + ", col=" + col);
-        //            // Check if there was a previously clicked image
-        //            if (prevRow != -1 || prevCol != -1) {
-        //                // Compare the positions of the previously clicked image and the current clicked image
-        //                if (prevRow == row && prevCol == col) {
-        //                    System.out.println("You clicked the same image twice!");
-        //                } else {
-        //                    System.out.println("Previously clicked image position: row=" + prevRow + ", col=" + prevCol);
-        //                    location[2] = row;
-        //                    location[3] = col;
-        //                }
-        //            }
-        //            if (temp != null && clickedImageView != null) {
-        //                if ((Math.abs(row - prevRow) == 1 && col == prevCol)
-        //                        || (Math.abs(row - prevRow) == 0
-        //                        || col == prevCol)) {
-        ////                    swapImages(gridPane, temp, clickedImageView);
-        //                }
-        //            }
-        //            // Store the current clicked image position as the previously clicked image position
-        //            prevRow = row;
-        //            prevCol = col;
-        //            temp = clickedImageView;
-        //            k++;
-        //            if (k == 2) {
-        //                temp = null;
-        //                k = 0;
-        //                location[0] = -1;
-        //                location[1] = -1;
-        //                location[2] = -1;
-        //                location[3] = -1;
-        //            }
-        //            System.out.println("row1=" + location[0] + ",col1=" + location[1] + ",row2=" + location[2] + ",col2=" + location[3]);
-        //        }
-        //        );
-        //
-        //    }
+    }
+    public Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
+        for (Node node : gridPane.getChildren()) {
+            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
+                return node;
+            }
+        }
+        return null;
+    }
 
-        /**
-         * ****************************************************************************
-         */
-        /**
-         * ****************************swapping**************************************
-         */
-        /**
-         * ****************************************************************************
-         */
-        //    private void swapImages(GridPane gridPane, ImageView imageView1, ImageView imageView2) {
-        //        int row1 = GridPane.getRowIndex(imageView1);
-        //        int col1 = GridPane.getColumnIndex(imageView1);
-        //        int row2 = GridPane.getRowIndex(imageView2);
-        //        int col2 = GridPane.getColumnIndex(imageView2);
-        //        if (row1 == -1 || col1 == -1 || row2 == -1 || col2 == -1) {
-        //            // One of the image views is not in the grid pane, so we can't swap them
-        //            return;
-        //        }
-        //        // Remove the image views from their current positions in the grid pane
-        //        gridPane.getChildren().removeAll(imageView1, imageView2);
-        //        // Add the image views to their new positions in the grid pane
-        //        gridPane.add(imageView1, col2, row2);
-        //        gridPane.add(imageView2, col1, row1);
+    public void moveButtons(GridPane gridPane, int fromCol, int fromRow, int toCol, int toRow) {
+        Node fromButton = getNodeFromGridPane(gridPane, fromCol, fromRow);
+        Node toButton = getNodeFromGridPane(gridPane, toCol, toRow);
+
+        // Update button position
+        gridPane.getChildren().remove(fromButton);
+        gridPane.add(fromButton, toCol, toRow);
+
+        // Update image position
+        if (fromButton instanceof Button && toButton instanceof Button) {
+            Button fromBtn = (Button) fromButton;
+            Button toBtn = (Button) toButton;
+
+            ImageView fromImageView = (ImageView) fromBtn.getGraphic();
+            ImageView toImageView = (ImageView) toBtn.getGraphic();
+
+            fromBtn.setGraphic(null);
+            toBtn.setGraphic(null);
+
+            fromBtn.setGraphic(toImageView);
+            toBtn.setGraphic(fromImageView);
+        }
+    }
+
+    public void handleButtonClick(Button button, GridPane gridPane, List<Button> selectedButtons) {
+        Integer buttonCol = GridPane.getColumnIndex(button);
+        Integer buttonRow = GridPane.getRowIndex(button);
+
+        if (buttonCol != null && buttonRow != null) {
+            if (selectedButtons.contains(button)) {
+                // Button is already selected, so deselect it
+                selectedButtons.remove(button);
+                button.setStyle(""); // Reset button style if necessary
+            } else {
+                // Button is not selected, so select it
+                selectedButtons.add(button);
+                button.setStyle("-fx-background-color: yellow;"); // Example: Set a yellow background to indicate selection
+            }
+
+            if (selectedButtons.size() == 2) {
+                // Two buttons are selected, perform the move operation
+                Button firstButton = selectedButtons.get(0);
+                Button secondButton = selectedButtons.get(1);
+
+                Integer firstButtonCol = GridPane.getColumnIndex(firstButton);
+                Integer firstButtonRow = GridPane.getRowIndex(firstButton);
+                Integer secondButtonCol = GridPane.getColumnIndex(secondButton);
+                Integer secondButtonRow = GridPane.getRowIndex(secondButton);
+
+                if (firstButtonCol != null && firstButtonRow != null && secondButtonCol != null && secondButtonRow != null) {
+                    // Swap the positions of the buttons
+                    moveButtons(gridPane, firstButtonCol, firstButtonRow, secondButtonCol, secondButtonRow);
+                    // Clear the selection
+                    selectedButtons.clear();
+                    firstButton.setStyle(""); // Reset button style if necessary
+                    secondButton.setStyle(""); // Reset button style if necessary
+                }
+            }
+        }
+
     }
 
     public Scene getScene2() {
