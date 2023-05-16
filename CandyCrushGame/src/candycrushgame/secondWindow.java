@@ -34,12 +34,13 @@ public class secondWindow {
 
     private static final int NUM_IMAGES = 64;
     private static final int GRID_SIZE = 8;
-    private int prevRow = -1, prevCol = -1; // Initialize to -1 to indicate no previously clicked image
-    int[] location = new int[4];
-    ImageView temp = new ImageView();
-    int k = 0;
+    private int[] location = new int[4];
     private Scene scene2;
+
     private Button btnm;
+
+    private Button selectedButton = null;
+
     List<Button> selectedButtons = new ArrayList<>();
 
     private static final String[] IMAGE_PATHS = {
@@ -70,6 +71,7 @@ public class secondWindow {
                 ImageView imageView = new ImageView(image);
                 imageView.setFitWidth(55);
                 imageView.setFitHeight(55);
+//                button.setStyle("-fx-background-color: transparent;");
                 button.setGraphic(imageView);
 
                 int row = i / GRID_SIZE;
@@ -91,19 +93,24 @@ public class secondWindow {
 
         // Creating objection of level & scores
         Level_Scores levelScores = new Level_Scores();
-
+        int lvl = levelScores.level();
+        String sc = levelScores.getScore();
+        int mv = levelScores.getmoves();
         levelScores.saveLevelScore();
 //        levelScores.loadLevelScore();
-        int level = 1;//levelScores.level();
-        String score = "0";//levelScores.getScore();
+
         // set labels 
         lbl scoreLbl0 = new lbl("Score:");
-        lbl scorelbl1 = new lbl(score);
+        lbl scorelbl1 = new lbl(sc);
         lbl movesLbl0 = new lbl("Moves:");
-        lbl movesLbl1 = new lbl("" /* +levelScores.getmoves()*/);
+        lbl movesLbl1 = new lbl("" + mv);
         lbl Level0 = new lbl("Level:");
-        lbl Level1 = new lbl("" + level);
+        lbl Level1 = new lbl("" + lvl);
+
+      
         btnm = new Button();
+
+
 
         // add the labels and gridpane
         h.getChildren()
@@ -133,6 +140,7 @@ public class secondWindow {
 
        
 
+        checkMatchedImages(gridPane);
         // Create a new scene
         scene2 = new Scene(v, 600, 650);
     }
@@ -146,6 +154,174 @@ public class secondWindow {
         return null;
     }
 
+    private Button findButtonById(GridPane gridPane, String buttonId) {
+        for (Node node : gridPane.getChildren()) {
+            if (node instanceof Button && buttonId.equals(node.getId())) {
+                return (Button) node;
+            }
+        }
+        return null;
+    }
+
+    // Modify the handleButtonClick method
+    private void handleButtonClick(Button button, GridPane gridPane, List<Button> selectedButtons) {
+        if (selectedButton == null) {
+            // No button is currently selected, so select the clicked button
+            selectedButton = button;
+            selectedButton.setStyle("-fx-border-color: red; -fx-border-width: 1;");
+        } else {
+            // A button is already selected, so perform the swap
+            String buttonId1 = selectedButton.getId();
+            String buttonId2 = button.getId();
+            if (isNeighbors(gridPane, buttonId1, buttonId2)) {
+                swapButtonsInGridPane(gridPane, buttonId1, buttonId2);
+                checkMatchedImages(gridPane);
+            }
+            // Deselect the buttons
+            selectedButton.setStyle("");
+            button.setStyle("");
+
+            // Reset the selectedButton variable
+            selectedButton = null;
+        }
+    }
+
+    public void swapButtonsInGridPane(GridPane gridPane, String buttonId1, String buttonId2) {
+        // Retrieve the buttons using their IDs
+        Button button1 = findButtonById(gridPane, buttonId1);
+        Button button2 = findButtonById(gridPane, buttonId2);
+
+        if (button1 != null && button2 != null) {
+            // Get the row and column indices of each button
+            int row1 = GridPane.getRowIndex(button1);
+            int col1 = GridPane.getColumnIndex(button1);
+            int row2 = GridPane.getRowIndex(button2);
+            int col2 = GridPane.getColumnIndex(button2);
+
+            if (row1 >= 0 && col1 >= 0 && row2 >= 0 && col2 >= 0) {
+                // Remove the buttons from the GridPane
+                gridPane.getChildren().removeAll(button1, button2);
+
+                // Set each button to the new positions
+                gridPane.add(button1, col2, row2);
+                gridPane.add(button2, col1, row1);
+            }
+        }
+    }
+
+    public boolean isNeighbors(GridPane gridPane, String buttonId1, String buttonId2) {
+        int columnIndex = -1;
+        int rowIndex = -1;
+        int columnIndex2 = -1;
+        int rowIndex2 = -1;
+        for (Node node : gridPane.getChildren()) {
+
+            if (node instanceof Button && buttonId1.equals(node.getId())) {
+                columnIndex = GridPane.getColumnIndex(node);
+                rowIndex = GridPane.getRowIndex(node);
+                
+            }
+
+        }
+        for (Node node : gridPane.getChildren()) {
+            if (node instanceof Button && buttonId2.equals(node.getId())) {
+                columnIndex2 = GridPane.getColumnIndex(node);
+                rowIndex2 = GridPane.getRowIndex(node);
+
+            }
+        }
+
+        if (((Math.abs(rowIndex - rowIndex2) == 1) && (columnIndex == columnIndex2)) || ((Math.abs(columnIndex - columnIndex2) == 1) && (rowIndex == rowIndex2))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * ***********************************************************************
+     */
+    /**
+     * ***********************************************************************
+     */
+    /**
+     * *******************************************************************************
+     */
+    public void checkMatchedImages(GridPane gridPane) {
+        int gridSize = 8; // Assuming an 8x8 grid
+
+        // Check rows
+        for (int row = 0; row < gridSize; row++) {
+            int count = 1; // Counter for consecutive matching images in a row
+            String previousId = null;
+
+            for (int col = 0; col < gridSize; col++) {
+                Node node = getNodeFromGridPane(gridPane, col, row);
+                if (node instanceof Button) {
+                    Button button = (Button) node;
+                    ImageView imageView = (ImageView) button.getGraphic();
+
+                    if (imageView != null) {
+                        String currentId = imageView.getId();
+//                        System.out.println("error..");
+                        if (previousId != null && currentId.equals(previousId)) {
+                            count++;
+
+                            if (count >= 3) {
+                                // Three or more consecutive matching images found in a row
+                                System.out.println("true");
+                            }
+                        } else {
+                            count = 1;
+                        }
+
+                        previousId = currentId;
+                    }
+                }
+//                System.out.println("false");
+            }
+
+        }
+        for (int col = 0; col < gridSize; col++) {
+            int count = 1; // Counter for consecutive matching images in a row
+            String previousId = null;
+
+            for (int row = 0; row < gridSize; row++) {
+                Node node = getNodeFromGridPane(gridPane, col, row);
+                if (node instanceof Button) {
+                    Button button = (Button) node;
+                    ImageView imageView = (ImageView) button.getGraphic();
+
+                    if (imageView != null) {
+                        String currentId = imageView.getId();
+//                        System.out.println("error..");
+                        if (previousId != null && currentId.equals(previousId)) {
+                            count++;
+
+                            if (count >= 3) {
+                                // Three or more consecutive matching images found in a row
+                                System.out.println("true");
+                            }
+                        } else {
+                            count = 1;
+                        }
+
+                        previousId = currentId;
+                    }
+                }
+//                System.out.println("false");
+            }
+
+        }
+    }
+
+    /**
+     * ***********************************************************************
+     */
+    /**
+     * ***********************************************************************
+     */
+
     public Scene getScene2() {
         return scene2;
     }
@@ -154,7 +330,5 @@ public class secondWindow {
         return btnm;
     }
 
-    private void handleButtonClick(Button button, GridPane gridPane, List<Button> selectedButtons) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 }
