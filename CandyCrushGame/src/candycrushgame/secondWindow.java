@@ -1,5 +1,6 @@
 package candycrushgame;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Toggle;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -37,6 +39,7 @@ public class secondWindow {
     ImageView temp = new ImageView();
     int k = 0;
     private Scene scene2;
+    private Button btnm;
     List<Button> selectedButtons = new ArrayList<>();
 
     private static final String[] IMAGE_PATHS = {
@@ -51,13 +54,12 @@ public class secondWindow {
 
     public secondWindow() {
         VBox v = new VBox();
-        HBox h = new HBox();
+        HBox h = new HBox(10);
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(20));
         gridPane.setHgap(2);
         gridPane.setVgap(2);
         Random random = new Random();
-        
 
         for (int i = 0; i < NUM_IMAGES; i++) {
             String imagePath = IMAGE_PATHS[random.nextInt(IMAGE_PATHS.length)];
@@ -101,6 +103,7 @@ public class secondWindow {
         lbl movesLbl1 = new lbl("" /* +levelScores.getmoves()*/);
         lbl Level0 = new lbl("Level:");
         lbl Level1 = new lbl("" + level);
+        btnm = new Button();
 
         // add the labels and gridpane
         h.getChildren()
@@ -109,20 +112,31 @@ public class secondWindow {
                         movesLbl0,
                         movesLbl1,
                         Level0,
-                        Level1);
+                        Level1,
+                        btnm);
 
         v.getChildren()
                 .addAll(h, gridPane);
 
         h.setAlignment(Pos.CENTER);
 
-        h.setSpacing(
-                20);
         v.setAlignment(Pos.CENTER);
+
+        
+        String projectDir = System.getProperty("user.dir"); // get current project directory
+        File imgFile = new File(projectDir, "src/image/wp2347583.jpg");
+
+        String imgPath = imgFile.toURI().toString();
+        v.setStyle("-fx-background-image: url('" + imgPath + "'); "
+                + "-fx-background-position: center center; "
+                + "-fx-background-repeat: stretch;");
+
+       
 
         // Create a new scene
         scene2 = new Scene(v, 600, 650);
     }
+
     public Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
         for (Node node : gridPane.getChildren()) {
             if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
@@ -132,10 +146,12 @@ public class secondWindow {
         return null;
     }
 
-    
-
     public Scene getScene2() {
         return scene2;
+    }
+
+    public Button getmutebtn() {
+        return btnm;
     }
 
     private void handleButtonClick(Button button, GridPane gridPane, List<Button> selectedButtons) {
