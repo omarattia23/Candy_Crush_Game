@@ -72,6 +72,7 @@ public class secondWindow {
                 imageView.setFitWidth(55);
                 imageView.setFitHeight(55);
 //                button.setStyle("-fx-background-color: transparent;");
+                button.setOpacity(0.8);
                 button.setGraphic(imageView);
 
                 int row = i / GRID_SIZE;
@@ -107,10 +108,7 @@ public class secondWindow {
         lbl Level0 = new lbl("Level:");
         lbl Level1 = new lbl("" + lvl);
 
-      
         btnm = new Button();
-
-
 
         // add the labels and gridpane
         h.getChildren()
@@ -129,7 +127,6 @@ public class secondWindow {
 
         v.setAlignment(Pos.CENTER);
 
-        
         String projectDir = System.getProperty("user.dir"); // get current project directory
         File imgFile = new File(projectDir, "src/image/wp2347583.jpg");
 
@@ -137,8 +134,6 @@ public class secondWindow {
         v.setStyle("-fx-background-image: url('" + imgPath + "'); "
                 + "-fx-background-position: center center; "
                 + "-fx-background-repeat: stretch;");
-
-       
 
         checkMatchedImages(gridPane);
         // Create a new scene
@@ -219,7 +214,7 @@ public class secondWindow {
             if (node instanceof Button && buttonId1.equals(node.getId())) {
                 columnIndex = GridPane.getColumnIndex(node);
                 rowIndex = GridPane.getRowIndex(node);
-                
+
             }
 
         }
@@ -321,7 +316,6 @@ public class secondWindow {
     /**
      * ***********************************************************************
      */
-
     public Scene getScene2() {
         return scene2;
     }
@@ -330,5 +324,4 @@ public class secondWindow {
         return btnm;
     }
 
-    
 }
