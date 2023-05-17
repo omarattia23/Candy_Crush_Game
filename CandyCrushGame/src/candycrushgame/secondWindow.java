@@ -172,7 +172,9 @@ public class secondWindow {
         } else {
             // A button is already selected, so perform the swap
             String buttonId1 = selectedButton.getId();
+            System.out.println("button_id_one: "+buttonId1);
             String buttonId2 = button.getId();
+            System.out.println("button_id_two: "+buttonId2);
             if (isNeighbors(gridPane, buttonId1, buttonId2)) {
                 swapButtonsInGridPane(gridPane, buttonId1, buttonId2);
 
@@ -191,8 +193,6 @@ public class secondWindow {
         // Retrieve the buttons using their IDs
         Button button1 = findButtonById(gridPane, buttonId1);
         Button button2 = findButtonById(gridPane, buttonId2);
-        buttonsToRemove1.add(button1);
-        buttonsToRemove2.add(button1);
 
         if (button1 != null && button2 != null) {
             // Get the row and column indices of each button
@@ -203,14 +203,18 @@ public class secondWindow {
 
             if (row1 >= 0 && col1 >= 0 && row2 >= 0 && col2 >= 0) {
                 // // Create TranslateTransition for button1
-                // TranslateTransition transition1 = createTranslateTransition(button1, col2, row2);
+                // TranslateTransition transition1 = createTranslateTransition(button1, col2,
+                // row2);
                 // // Create TranslateTransition for button2
-                // TranslateTransition transition2 = createTranslateTransition(button2, col1, row1);
+                // TranslateTransition transition2 = createTranslateTransition(button2, col1,
+                // row1);
 
                 // Set the onFinished event to update the button positions
                 gridPane.getChildren().removeAll(button1, button2);
                 gridPane.add(button1, col2, row2);
+                button1.setId(buttonId1);
                 gridPane.add(button2, col1, row1);
+                button2.setId(buttonId2);
 
                 // Play the animations
                 // transition1.play();
@@ -219,12 +223,16 @@ public class secondWindow {
         }
     }
 
-    // private TranslateTransition createTranslateTransition(Node node, int col, int row) {
-    //     TranslateTransition transition = new TranslateTransition(Duration.seconds(0.4), node);
-    //     transition.setToX(((col - GridPane.getColumnIndex(node))) * node.getBoundsInParent().getWidth());
-    //     transition.setToY(((row - GridPane.getRowIndex(node))) * node.getBoundsInParent().getHeight());
+    // private TranslateTransition createTranslateTransition(Node node, int col, int
+    // row) {
+    // TranslateTransition transition = new
+    // TranslateTransition(Duration.seconds(0.4), node);
+    // transition.setToX(((col - GridPane.getColumnIndex(node))) *
+    // node.getBoundsInParent().getWidth());
+    // transition.setToY(((row - GridPane.getRowIndex(node))) *
+    // node.getBoundsInParent().getHeight());
 
-    //     return transition;
+    // return transition;
     // }
 
     public boolean isNeighbors(GridPane gridPane, String buttonId1, String buttonId2) {
@@ -268,7 +276,7 @@ public class secondWindow {
      */
     public void checkMatchedImages(GridPane gridPane) {
         int gridSize = 8; // Assuming an 8x8 grid
-        
+
         // Check rows
         for (int row = 0; row < gridSize; row++) {
             int count = 1; // Counter for consecutive matching images in a row
@@ -278,10 +286,9 @@ public class secondWindow {
                 Node node = getNodeFromGridPane(gridPane, col, row);
                 if (node instanceof Button) {
                     Button button = (Button) node;
-                    
 
                     ImageView imageView = (ImageView) button.getGraphic();
-                    
+
                     if (imageView != null) {
                         String currentId = imageView.getId();
 
@@ -306,6 +313,7 @@ public class secondWindow {
                         }
 
                         previousId = currentId;
+                        buttonsToRemove1.add(button);
 
                     }
 
@@ -322,9 +330,9 @@ public class secondWindow {
                 Node node = getNodeFromGridPane(gridPane, col, row);
                 if (node instanceof Button) {
                     Button button = (Button) node;
-                    buttonsToRemove2.add(button);
+
                     ImageView imageView = (ImageView) button.getGraphic();
-                    
+
                     if (imageView != null) {
                         String currentId = imageView.getId();
 
@@ -342,10 +350,14 @@ public class secondWindow {
                             }
                         } else {
                             count = 1;
-                            buttonsToRemove2.clear();
+                            if (buttonsToRemove2.size() > 1) {
+                                buttonsToRemove2.subList(0, buttonsToRemove2.size() - 1).clear();
+                            }
                         }
 
                         previousId = currentId;
+                        buttonsToRemove2.add(button);
+
 
                     }
 
