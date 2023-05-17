@@ -1,7 +1,5 @@
 package candycrushgame;
 
-import javafx.animation.TranslateTransition;
-import javafx.util.Duration;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,7 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Toggle;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -36,23 +33,22 @@ public class secondWindow {
 
     private static final int NUM_IMAGES = 64;
     private static final int GRID_SIZE = 8;
-    private int[] location = new int[4];
-    private Scene scene2;
+    private final Scene scene2;
 
-    private Button btnm;
+    private final Button btnm;
 
     private Button selectedButton = null;
-    private Level_Scores levelScores;
+    private final Level_Scores levelScores;
     List<Button> selectedButtons = new ArrayList<>();
     private List<Button> buttonsToRemove1 = new ArrayList<>();
     private List<Button> buttonsToRemove2 = new ArrayList<>();
-    private int lvl;
-    private int mv;
-    private String sc;
-    private lbl scorelbl1;
-    private lbl movesLbl1;
-
-    private lbl Level1;
+    private final int lvl;
+    private final int mv;
+    private final String sc;
+    private final lbl scorelbl1;
+    private final lbl movesLbl1;
+    private boolean state = true;
+    private final lbl Level1;
 
     private static final String[] IMAGE_PATHS = {
         "src\\items\\1.png",
@@ -186,6 +182,10 @@ public class secondWindow {
                 swapButtonsInGridPane(gridPane, buttonId1, buttonId2);
 
                 checkMatchedImages(gridPane);
+                if (state) {
+                    swapButtonsInGridPane(gridPane, buttonId2, buttonId1);
+
+                }
             }
             // Deselect the buttons
             selectedButton.setStyle("");
@@ -274,9 +274,10 @@ public class secondWindow {
      */
     /**
      * ***********************************************************************
+     * @param gridPane
      */
     public void checkMatchedImages(GridPane gridPane) {
-        
+
         int gridSize = 8; // Assuming an 8x8 grid
 
         // Check rows
@@ -286,8 +287,7 @@ public class secondWindow {
 
             for (int col = 0; col < gridSize; col++) {
                 Node node = getNodeFromGridPane(gridPane, col, row);
-                if (node instanceof Button) {
-                    Button button = (Button) node;
+                if (node instanceof Button button) {
 
                     ImageView imageView = (ImageView) button.getGraphic();
 
@@ -306,7 +306,7 @@ public class secondWindow {
                                 button.setGraphic(null);
                                 // button.setId("-2");
                                 System.out.println("Omaaaaaaaaaaaaaaaaaaaaaaaaaaaaaar");
-                                
+                                state = false;
                                 for (Button btn : buttonsToRemove1) {
                                     int col11 = GridPane.getColumnIndex(btn);
                                     int row11 = GridPane.getRowIndex(btn);
@@ -348,7 +348,7 @@ public class secondWindow {
 
                 }
                 // System.out.println("false");
-                
+
             }
 
         }
@@ -358,8 +358,7 @@ public class secondWindow {
 
             for (int row = 0; row < gridSize; row++) {
                 Node node = getNodeFromGridPane(gridPane, col, row);
-                if (node instanceof Button) {
-                    Button button = (Button) node;
+                if (node instanceof Button button) {
 
                     ImageView imageView = (ImageView) button.getGraphic();
                     if (imageView != null) {
@@ -375,6 +374,7 @@ public class secondWindow {
                                 // Three or more consecutive matching images found in a row
                                 System.out.println("true");
                                 button.setGraphic(null);
+                                state = false;
                                 // button.setId("-2");
                                 for (Button btn : buttonsToRemove2) {
                                     int col11 = GridPane.getColumnIndex(btn);
@@ -416,9 +416,9 @@ public class secondWindow {
                 }
                 // System.out.println("false");
             }
-            
+
         }
-        
+
     }
 
     /**
@@ -427,8 +427,8 @@ public class secondWindow {
     /**
      * ***********************************************************************
      */
-        private void createRandomButton(GridPane gridPane, int col, int row) {
-        Node node =getNodeFromGridPane(gridPane, col, row);
+    private void createRandomButton(GridPane gridPane, int col, int row) {
+        Node node = getNodeFromGridPane(gridPane, col, row);
         Button button11 = (Button) node;
         Random random = new Random();
         gridPane.getChildren().remove(button11);
@@ -455,6 +455,7 @@ public class secondWindow {
             System.out.println("Failed to load image: " + imagePath);
         }
     }
+
     public Scene getScene2() {
         return scene2;
     }
