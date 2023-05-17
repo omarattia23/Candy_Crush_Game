@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Level_Scores {
-
+     
     private int score = 0;
     private int move = 25;
     private int level;
@@ -39,8 +39,12 @@ public class Level_Scores {
         return level;
     }
 
-    public void score() {
+    public void score1() {
         score += 10;
+             
+    }
+    public void score2(){
+        score += 15;
     }
 
     public String getScore() {
