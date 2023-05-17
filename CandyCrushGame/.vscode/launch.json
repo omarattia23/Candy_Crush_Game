@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "candycrushgame.Main",
+            "projectName": "CandyCrushGame_7607ead9"
+        },
+        {
+            "type": "java",
+            "name": "GridBackground",
+            "request": "launch",
+            "mainClass": "candycrushgame.GridBackground",
+            "projectName": "CandyCrushGame_7607ead9"
+        },
+        {
+            "type": "java",
             "name": "CandyCrushGame",
             "request": "launch",
             "mainClass": "candycrushgame.CandyCrushGame",
