@@ -45,7 +45,13 @@ public class secondWindow {
     private String sc;
     private lbl scorelbl1;
     private lbl movesLbl1;
+<<<<<<< HEAD
     private lbl Level1;
+=======
+
+    private lbl Level1;
+
+>>>>>>> 9a1145748efed3e5dbccbe919867c4ffc3323d66
     private static final String[] IMAGE_PATHS = {
         "src\\items\\1.png",
         "src\\items\\2.png",
@@ -109,7 +115,7 @@ public class secondWindow {
         lbl movesLbl0 = new lbl("Moves:");
         movesLbl1 = new lbl("" + mv);
         lbl Level0 = new lbl("Level:");
-         Level1 = new lbl("" + lvl);
+        Level1 = new lbl("" + lvl);
 
         btnm = new Button();
 
@@ -163,7 +169,7 @@ public class secondWindow {
 
     // Modify the handleButtonClick method
     private void handleButtonClick(Button button, GridPane gridPane, List<Button> selectedButtons) {
-        checkMatchedImages(gridPane);
+        //checkMatchedImages(gridPane);
         if (selectedButton == null) {
             // No button is currently selected, so select the clicked button
             selectedButton = button;
@@ -203,7 +209,28 @@ public class secondWindow {
 
             if (row1 >= 0 && col1 >= 0 && row2 >= 0 && col2 >= 0) {
 
+<<<<<<< HEAD
 //                // Remove the buttons from the GridPane
+=======
+>>>>>>> 9a1145748efed3e5dbccbe919867c4ffc3323d66
+                gridPane.getChildren().removeAll(button1, button2);
+                gridPane.add(button1, col2, row2);
+                gridPane.add(button2, col1, row1);
+
+<<<<<<< HEAD
+//                // Create TranslateTransition for button1
+//                TranslateTransition transition1 = createTranslateTransition(button1, col2, row2);
+//                // Create TranslateTransition for button2
+//                TranslateTransition transition2 = createTranslateTransition(button2, col1, row1);
+//
+//                // Play the animations
+//                transition1.play();
+//                transition2.play();
+                gridPane.getChildren().removeAll(button1, button2);
+                gridPane.add(button1, col2, row2);
+                gridPane.add(button2, col1, row1);
+                button2.setId(buttonId2);
+=======
                 gridPane.getChildren().removeAll(button1, button2);
                 gridPane.add(button1, col2, row2);
                 gridPane.add(button2, col1, row1);
@@ -218,8 +245,10 @@ public class secondWindow {
 //                transition2.play();
                 gridPane.getChildren().removeAll(button1, button2);
                 gridPane.add(button1, col2, row2);
+                button1.setId(buttonId2);
                 gridPane.add(button2, col1, row1);
-                button2.setId(buttonId2);
+                button2.setId(buttonId1);
+>>>>>>> 9a1145748efed3e5dbccbe919867c4ffc3323d66
                 levelScores.moves();
                 movesLbl1.setText("" + levelScores.getmoves());
 
@@ -263,10 +292,8 @@ public class secondWindow {
     /**
      * ***********************************************************************
      */
-    /**
-     * *******************************************************************************
-     */
     public void checkMatchedImages(GridPane gridPane) {
+        
         int gridSize = 8; // Assuming an 8x8 grid
 
         // Check rows
@@ -296,7 +323,14 @@ public class secondWindow {
                                 button.setGraphic(null);
                                 // button.setId("-2");
                                 System.out.println("Omaaaaaaaaaaaaaaaaaaaaaaaaaaaaaar");
+                                
+                                for (Button btn : buttonsToRemove1) {
+                                    int col11 = GridPane.getColumnIndex(btn);
+                                    int row11 = GridPane.getRowIndex(btn);
+                                    createRandomButton(gridPane, col11, row11);
+                                }
                                 gridPane.getChildren().removeAll(buttonsToRemove1);
+<<<<<<< HEAD
 
                                 System.out.println(buttonsToRemove1);
                                 levelScores.score1();
@@ -304,10 +338,24 @@ public class secondWindow {
                                 levelScores.moves();
                                 movesLbl1.setText("" + levelScores.getmoves());
 
+=======
+                                System.out.println(buttonsToRemove1);
+>>>>>>> 9a1145748efed3e5dbccbe919867c4ffc3323d66
                                 levelScores.score1();
                                 scorelbl1.setText("" + levelScores.getScore());
                                 levelScores.moves();
                                 movesLbl1.setText("" + levelScores.getmoves());
+<<<<<<< HEAD
+=======
+                                levelScores.score1();
+                                levelScores.moves();
+                                movesLbl1.setText("" + levelScores.getmoves());
+                                Level1.setText("" + levelScores.level());
+                                scorelbl1.setText("" + levelScores.getScore());
+                                scorelbl1.setText("" + levelScores.getScore());
+                                levelScores.moves();
+                                movesLbl1.setText("" + levelScores.getmoves());
+>>>>>>> 9a1145748efed3e5dbccbe919867c4ffc3323d66
 
                             }
 
@@ -317,15 +365,23 @@ public class secondWindow {
 
                             if (buttonsToRemove1.size() > 1) {
                                 buttonsToRemove1.clear();
-                                previousId = null;
+
                             }
                         }
                         previousId = currentId;
+<<<<<<< HEAD
                         if(count==1)
                         buttonsToRemove1.add(button);
+=======
+                        if (count == 1) {
+                            buttonsToRemove1.add(button);
+                        }
+
+>>>>>>> 9a1145748efed3e5dbccbe919867c4ffc3323d66
                     }
                 }
                 // System.out.println("false");
+                
             }
         }
         for (int col = 0; col < gridSize; col++) {
@@ -347,14 +403,26 @@ public class secondWindow {
                                 // Three or more consecutive matching images found in a row
                                 System.out.println("true");
                                 button.setGraphic(null);
+<<<<<<< HEAD
                                 
 
                                 
                                 gridPane.getChildren().removeAll(buttonsToRemove2);
+=======
+                                // button.setId("-2");
+                                for (Button btn : buttonsToRemove2) {
+                                    int col11 = GridPane.getColumnIndex(btn);
+                                    int row11 = GridPane.getRowIndex(btn);
+                                    createRandomButton(gridPane, col11, row11);
+                                }
+                                gridPane.getChildren().removeAll(buttonsToRemove2);
+                                System.out.println(buttonsToRemove2);
+>>>>>>> 9a1145748efed3e5dbccbe919867c4ffc3323d66
                                 levelScores.score1();
                                 scorelbl1.setText("" + levelScores.getScore());
                                 levelScores.moves();
                                 movesLbl1.setText("" + levelScores.getmoves());
+<<<<<<< HEAD
                                 levelScores.score1();
                                 levelScores.moves();
                                 movesLbl1.setText( ""+ levelScores.getmoves());
@@ -362,26 +430,40 @@ public class secondWindow {
                                 Level1.setText(""+ levelScores.level());
                                 scorelbl1.setText( ""+ levelScores.getScore());
                                 scorelbl1.setText("" + levelScores.getScore());
+=======
+
+                                levelScores.score1();
+
+                                levelScores.moves();
+                                movesLbl1.setText("" + levelScores.getmoves());
+
+                                Level1.setText("" + levelScores.level());
+                                scorelbl1.setText("" + levelScores.getScore());
+                                scorelbl1.setText("" + levelScores.getScore());
+
+>>>>>>> 9a1145748efed3e5dbccbe919867c4ffc3323d66
                             }
                         } else {
                             count = 1;
                             if (buttonsToRemove2.size() > 1) {
                                 buttonsToRemove2.clear();
-                                previousId = null;
+
                             }
                         }
 
                         previousId = currentId;
-                        if(count==1)
-                        buttonsToRemove2.add(button);
+                        if (count == 1) {
+                            buttonsToRemove2.add(button);
+                        }
 
                     }
 
                 }
                 // System.out.println("false");
             }
-
+            
         }
+        
     }
 
     /**
@@ -390,6 +472,34 @@ public class secondWindow {
     /**
      * ***********************************************************************
      */
+        private void createRandomButton(GridPane gridPane, int col, int row) {
+        Node node =getNodeFromGridPane(gridPane, col, row);
+        Button button11 = (Button) node;
+        Random random = new Random();
+        gridPane.getChildren().remove(button11);
+        String imagePath = IMAGE_PATHS[random.nextInt(IMAGE_PATHS.length)];
+        Path path = Paths.get(imagePath);
+        try {
+            Image image = new Image(path.toUri().toString());
+            Button button = new Button();
+            ImageView imageView = new ImageView(image);
+            imageView.setFitWidth(55);
+            imageView.setFitHeight(55);
+            button.setOpacity(0.8);
+            button.setGraphic(imageView);
+
+            String buttonId = "button_" + col + "_" + row;
+            String imageId = "image_" + imagePath.hashCode();
+
+            button.setId(buttonId);
+            button.setOnAction(e -> handleButtonClick(button, gridPane, selectedButtons));
+            imageView.setId(imageId);
+
+            gridPane.add(button, col, row);
+        } catch (Exception e) {
+            System.out.println("Failed to load image: " + imagePath);
+        }
+    }
     public Scene getScene2() {
         return scene2;
     }
