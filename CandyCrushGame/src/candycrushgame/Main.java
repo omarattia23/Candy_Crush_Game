@@ -31,16 +31,8 @@ public class Main extends Application {
         Media media1 = new Media(s3);
         mediaPlayer1 = new MediaPlayer(media1);
         mediaPlayer1.setOnEndOfMedia(() -> mediaPlayer1.seek(javafx.util.Duration.ZERO));
-        //
-        
-        // create an instance of the MainWindow class
         firstWindow firstWindow = new firstWindow();
-        // create an instance of the LoadingImages class
         secondWindow secondWindow = new secondWindow();
-        // create an instance of the popoutWindow class
-        // PopoutWindow popoutWindow = new PopoutWindow();
-        // popoutWindow.show(); // Show the popout window
-        // mute button
         File mute = new File(projectDir, "src/image/images2.jpg");
         File sound = new File(projectDir, "src/image/images1.jpg");
         String muteDir = mute.toURI().toString();
@@ -67,15 +59,7 @@ public class Main extends Application {
             }
             
        });
-//        secondWindow.getmutebtn().setOnAction(e->
-//        {mediaPlayer1.play();
-//        secondWindow.getmutebtn().setGraphic(imageView1);
-//        });
-        // create a Scene object with the MainWindow as the root
-        
         primaryStage.setScene(firstWindow.getScene1());
-        
- 
         firstWindow.newgamebtn().setOnAction(e -> {
             primaryStage.setScene(secondWindow.getScene2());
             mediaPlayer.stop();
