@@ -1,5 +1,7 @@
 package candycrushgame;
 
+import javafx.animation.TranslateTransition;
+import javafx.util.Duration;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -160,6 +162,7 @@ public class secondWindow {
 
     // Modify the handleButtonClick method
     private void handleButtonClick(Button button, GridPane gridPane, List<Button> selectedButtons) {
+        checkMatchedImages(gridPane);
         if (selectedButton == null) {
             // No button is currently selected, so select the clicked button
             selectedButton = button;
@@ -194,14 +197,26 @@ public class secondWindow {
             int col2 = GridPane.getColumnIndex(button2);
 
             if (row1 >= 0 && col1 >= 0 && row2 >= 0 && col2 >= 0) {
-                // Remove the buttons from the GridPane
-                gridPane.getChildren().removeAll(button1, button2);
+//                // Remove the buttons from the GridPane
+//                gridPane.getChildren().removeAll(button1, button2);
 
-                // Set each button to the new positions
-                gridPane.add(button1, col2, row2);
-                gridPane.add(button2, col1, row1);
+                // Create TranslateTransition for button1
+                TranslateTransition transition1 = createTranslateTransition(button1, col2, row2);
+                // Create TranslateTransition for button2
+                TranslateTransition transition2 = createTranslateTransition(button2, col1, row1);
+
+                // Play the animations
+                transition1.play();
+                transition2.play();
             }
         }
+    }
+
+    private TranslateTransition createTranslateTransition(Node node, int col, int row) {
+        TranslateTransition transition = new TranslateTransition(Duration.seconds(0.4), node);
+        transition.setByX((col - GridPane.getColumnIndex(node)) * node.getBoundsInParent().getWidth());
+        transition.setByY((row - GridPane.getRowIndex(node)) * node.getBoundsInParent().getHeight());
+        return transition;
     }
 
     public boolean isNeighbors(GridPane gridPane, String buttonId1, String buttonId2) {
@@ -244,7 +259,8 @@ public class secondWindow {
      */
     public void checkMatchedImages(GridPane gridPane) {
         int gridSize = 8; // Assuming an 8x8 grid
-
+        List<Button> buttonsToRemove1 = new ArrayList<>();
+        List<Button> buttonsToRemove2 = new ArrayList<>();
         // Check rows
         for (int row = 0; row < gridSize; row++) {
             int count = 1; // Counter for consecutive matching images in a row
@@ -255,23 +271,32 @@ public class secondWindow {
                 if (node instanceof Button) {
                     Button button = (Button) node;
                     ImageView imageView = (ImageView) button.getGraphic();
-
+                    buttonsToRemove1.add(button);
                     if (imageView != null) {
                         String currentId = imageView.getId();
+
 //                        System.out.println("error..");
                         if (previousId != null && currentId.equals(previousId)) {
                             count++;
+                            buttonsToRemove1.add(button);
 
                             if (count >= 3) {
                                 // Three or more consecutive matching images found in a row
                                 System.out.println("true");
+                                button.setGraphic(null);
+//                                button.setId("-2");
+                                System.out.println("Omaaaaaaaaaaaaaaaaaaaaaaaaaaaaaar");
+                                gridPane.getChildren().removeAll(buttonsToRemove1);
                             }
                         } else {
                             count = 1;
+                            buttonsToRemove1.clear();
                         }
 
                         previousId = currentId;
+
                     }
+
                 }
 //                System.out.println("false");
             }
@@ -286,23 +311,31 @@ public class secondWindow {
                 if (node instanceof Button) {
                     Button button = (Button) node;
                     ImageView imageView = (ImageView) button.getGraphic();
-
+                    buttonsToRemove2.add(button);
                     if (imageView != null) {
                         String currentId = imageView.getId();
+
 //                        System.out.println("error..");
                         if (previousId != null && currentId.equals(previousId)) {
                             count++;
+                            buttonsToRemove2.add(button);
 
                             if (count >= 3) {
                                 // Three or more consecutive matching images found in a row
                                 System.out.println("true");
+                                button.setGraphic(null);
+//                                button.setId("-2");
+                                gridPane.getChildren().removeAll(buttonsToRemove2);
                             }
                         } else {
                             count = 1;
+                            buttonsToRemove2.clear();
                         }
 
                         previousId = currentId;
+
                     }
+
                 }
 //                System.out.println("false");
             }

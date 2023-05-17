@@ -75,7 +75,7 @@ public class Main extends Application {
         
         primaryStage.setScene(firstWindow.getScene1());
         
-
+ 
         firstWindow.newgamebtn().setOnAction(e -> {
             primaryStage.setScene(secondWindow.getScene2());
             mediaPlayer.stop();
