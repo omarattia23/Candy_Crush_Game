@@ -53,14 +53,14 @@ public class secondWindow {
     private lbl movesLbl1;
 
     private static final String[] IMAGE_PATHS = {
-            "src\\items\\1.png",
-            "src\\items\\2.png",
-            "src\\items\\3.png",
-            "src\\items\\4.png",
-            "src\\items\\5.png",
-            "src\\items\\6.png",
-            "src\\items\\7.png",
-            "src\\items\\8.jpeg" };
+        "src\\items\\1.png",
+        "src\\items\\2.png",
+        "src\\items\\3.png",
+        "src\\items\\4.png",
+        "src\\items\\5.png",
+        "src\\items\\6.png",
+        "src\\items\\7.png",
+        "src\\items\\8.jpeg"};
 
     public secondWindow() {
         VBox v = new VBox();
@@ -113,7 +113,7 @@ public class secondWindow {
         lbl scoreLbl0 = new lbl("Score:");
         scorelbl1 = new lbl(sc);
         lbl movesLbl0 = new lbl("Moves:");
-         movesLbl1 = new lbl("" + mv);
+        movesLbl1 = new lbl("" + mv);
         lbl Level0 = new lbl("Level:");
         lbl Level1 = new lbl("" + lvl);
 
@@ -177,9 +177,9 @@ public class secondWindow {
         } else {
             // A button is already selected, so perform the swap
             String buttonId1 = selectedButton.getId();
-            System.out.println("button_id_one: "+buttonId1);
+            System.out.println("button_id_one: " + buttonId1);
             String buttonId2 = button.getId();
-            System.out.println("button_id_two: "+buttonId2);
+            System.out.println("button_id_two: " + buttonId2);
             if (isNeighbors(gridPane, buttonId1, buttonId2)) {
                 swapButtonsInGridPane(gridPane, buttonId1, buttonId2);
 
@@ -208,7 +208,7 @@ public class secondWindow {
             int col2 = GridPane.getColumnIndex(button2);
 
             if (row1 >= 0 && col1 >= 0 && row2 >= 0 && col2 >= 0) {
- 
+
 //                // Remove the buttons from the GridPane
                 gridPane.getChildren().removeAll(button1, button2);
                 gridPane.add(button1, col2, row2);
@@ -222,18 +222,17 @@ public class secondWindow {
 //                // Play the animations
 //                transition1.play();
 //                transition2.play();
-
                 gridPane.getChildren().removeAll(button1, button2);
                 gridPane.add(button1, col2, row2);
                 button1.setId(buttonId1);
                 gridPane.add(button2, col1, row1);
                 button2.setId(buttonId2);
+                levelScores.moves();
+                movesLbl1.setText("" + levelScores.getmoves());
 
             }
         }
     }
-
-    
 
     public boolean isNeighbors(GridPane gridPane, String buttonId1, String buttonId2) {
         int columnIndex = -1;
@@ -307,13 +306,9 @@ public class secondWindow {
                                 gridPane.getChildren().removeAll(buttonsToRemove1);
 
                                 levelScores.score1();
-                                scorelbl1.setText( ""+ levelScores.getScore());
+                                scorelbl1.setText("" + levelScores.getScore());
                                 levelScores.moves();
-                                movesLbl1.setText( ""+ levelScores.getmoves());
-                                
-                                
-
-                                
+                                movesLbl1.setText("" + levelScores.getmoves());
 
                             }
 
@@ -338,7 +333,7 @@ public class secondWindow {
 
         }
         for (int col = 0; col < gridSize; col++) {
-            int count = 1; 
+            int count = 1;
             String previousId = null;
 
             for (int row = 0; row < gridSize; row++) {
@@ -363,9 +358,7 @@ public class secondWindow {
                                 // button.setId("-2");
                                 gridPane.getChildren().removeAll(buttonsToRemove2);
                                 levelScores.score1();
-                                scorelbl1.setText( ""+ levelScores.getScore());
-                                levelScores.moves();
-                                movesLbl1.setText( ""+ levelScores.getmoves());
+                                scorelbl1.setText("" + levelScores.getScore());
 
                             }
                         } else {
@@ -378,7 +371,6 @@ public class secondWindow {
 
                         previousId = currentId;
                         buttonsToRemove2.add(button);
-
 
                     }
 
