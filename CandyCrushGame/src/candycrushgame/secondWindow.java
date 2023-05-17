@@ -202,38 +202,17 @@ public class secondWindow {
             int col2 = GridPane.getColumnIndex(button2);
 
             if (row1 >= 0 && col1 >= 0 && row2 >= 0 && col2 >= 0) {
-                // // Create TranslateTransition for button1
-                // TranslateTransition transition1 = createTranslateTransition(button1, col2,
-                // row2);
-                // // Create TranslateTransition for button2
-                // TranslateTransition transition2 = createTranslateTransition(button2, col1,
-                // row1);
-
-                // Set the onFinished event to update the button positions
                 gridPane.getChildren().removeAll(button1, button2);
                 gridPane.add(button1, col2, row2);
                 button1.setId(buttonId1);
                 gridPane.add(button2, col1, row1);
                 button2.setId(buttonId2);
 
-                // Play the animations
-                // transition1.play();
-                // transition2.play();
             }
         }
     }
 
-    // private TranslateTransition createTranslateTransition(Node node, int col, int
-    // row) {
-    // TranslateTransition transition = new
-    // TranslateTransition(Duration.seconds(0.4), node);
-    // transition.setToX(((col - GridPane.getColumnIndex(node))) *
-    // node.getBoundsInParent().getWidth());
-    // transition.setToY(((row - GridPane.getRowIndex(node))) *
-    // node.getBoundsInParent().getHeight());
-
-    // return transition;
-    // }
+    
 
     public boolean isNeighbors(GridPane gridPane, String buttonId1, String buttonId2) {
         int columnIndex = -1;
@@ -308,7 +287,8 @@ public class secondWindow {
                         } else {
                             count = 1;
                             if (buttonsToRemove1.size() > 1) {
-                                buttonsToRemove1.subList(0, buttonsToRemove1.size() - 1).clear();
+                                buttonsToRemove1.clear();
+                                previousId = null;
                             }
                         }
 
@@ -323,7 +303,7 @@ public class secondWindow {
 
         }
         for (int col = 0; col < gridSize; col++) {
-            int count = 1; // Counter for consecutive matching images in a row
+            int count = 1; 
             String previousId = null;
 
             for (int row = 0; row < gridSize; row++) {
@@ -351,7 +331,8 @@ public class secondWindow {
                         } else {
                             count = 1;
                             if (buttonsToRemove2.size() > 1) {
-                                buttonsToRemove2.subList(0, buttonsToRemove2.size() - 1).clear();
+                                buttonsToRemove2.clear();
+                                previousId = null;
                             }
                         }
 
