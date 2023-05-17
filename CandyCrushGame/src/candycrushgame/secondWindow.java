@@ -26,9 +26,9 @@ import javafx.scene.text.Font;
 class lbl extends Label {
 
     public lbl(String s) {
-        setMinSize(60, 30);
+        setMinSize(40, 30);
         setText(s);
-        setFont(new Font("Cambria", 32));
+        setFont(new Font("Cambria", 28));
     }
 }
 
@@ -51,6 +51,7 @@ public class secondWindow {
     private String sc;
     private lbl scorelbl1;
     private lbl movesLbl1;
+    private lbl Level1;
 
     private static final String[] IMAGE_PATHS = {
             "src\\items\\1.png",
@@ -115,7 +116,7 @@ public class secondWindow {
         lbl movesLbl0 = new lbl("Moves:");
          movesLbl1 = new lbl("" + mv);
         lbl Level0 = new lbl("Level:");
-        lbl Level1 = new lbl("" + lvl);
+         Level1 = new lbl("" + lvl);
 
         btnm = new Button();
 
@@ -307,9 +308,14 @@ public class secondWindow {
                                 gridPane.getChildren().removeAll(buttonsToRemove1);
 
                                 levelScores.score1();
-                                scorelbl1.setText( ""+ levelScores.getScore());
                                 levelScores.moves();
                                 movesLbl1.setText( ""+ levelScores.getmoves());
+                                
+                                Level1.setText(""+ levelScores.level());
+                                scorelbl1.setText( ""+ levelScores.getScore());
+                                
+                                
+                                
                                 
                                 
 
@@ -363,9 +369,11 @@ public class secondWindow {
                                 // button.setId("-2");
                                 gridPane.getChildren().removeAll(buttonsToRemove2);
                                 levelScores.score1();
-                                scorelbl1.setText( ""+ levelScores.getScore());
                                 levelScores.moves();
                                 movesLbl1.setText( ""+ levelScores.getmoves());
+                                
+                                Level1.setText(""+ levelScores.level());
+                                scorelbl1.setText( ""+ levelScores.getScore());
 
                             }
                         } else {
