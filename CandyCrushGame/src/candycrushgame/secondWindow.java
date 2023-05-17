@@ -26,9 +26,9 @@ import javafx.scene.text.Font;
 class lbl extends Label {
 
     public lbl(String s) {
-        setMinSize(60, 30);
+        setMinSize(40, 30);
         setText(s);
-        setFont(new Font("Cambria", 32));
+        setFont(new Font("Cambria", 28));
     }
 }
 
@@ -51,6 +51,10 @@ public class secondWindow {
     private String sc;
     private lbl scorelbl1;
     private lbl movesLbl1;
+<<<<<<< HEAD
+=======
+    private lbl Level1;
+>>>>>>> cc2acd8ac8f898ac8f68522d3397dc50b68a25d4
 
     private static final String[] IMAGE_PATHS = {
         "src\\items\\1.png",
@@ -115,7 +119,7 @@ public class secondWindow {
         lbl movesLbl0 = new lbl("Moves:");
         movesLbl1 = new lbl("" + mv);
         lbl Level0 = new lbl("Level:");
-        lbl Level1 = new lbl("" + lvl);
+         Level1 = new lbl("" + lvl);
 
         btnm = new Button();
 
@@ -210,9 +214,25 @@ public class secondWindow {
             if (row1 >= 0 && col1 >= 0 && row2 >= 0 && col2 >= 0) {
 
 //                // Remove the buttons from the GridPane
+<<<<<<< HEAD
+=======
                 gridPane.getChildren().removeAll(button1, button2);
                 gridPane.add(button1, col2, row2);
                 gridPane.add(button2, col1, row1);
+
+//                // Create TranslateTransition for button1
+//                TranslateTransition transition1 = createTranslateTransition(button1, col2, row2);
+//                // Create TranslateTransition for button2
+//                TranslateTransition transition2 = createTranslateTransition(button2, col1, row1);
+//
+//                // Play the animations
+//                transition1.play();
+//                transition2.play();
+>>>>>>> cc2acd8ac8f898ac8f68522d3397dc50b68a25d4
+                gridPane.getChildren().removeAll(button1, button2);
+                gridPane.add(button1, col2, row2);
+                gridPane.add(button2, col1, row1);
+<<<<<<< HEAD
 
 //                // Create TranslateTransition for button1
 //                TranslateTransition transition1 = createTranslateTransition(button1, col2, row2);
@@ -227,6 +247,11 @@ public class secondWindow {
                 button1.setId(buttonId2);
                 gridPane.add(button2, col1, row1);
                 button2.setId(buttonId1);
+=======
+                button2.setId(buttonId2);
+                levelScores.moves();
+                movesLbl1.setText("" + levelScores.getmoves());
+>>>>>>> cc2acd8ac8f898ac8f68522d3397dc50b68a25d4
 
             }
         }
@@ -302,11 +327,34 @@ public class secondWindow {
                                 // button.setId("-2");
                                 System.out.println("Omaaaaaaaaaaaaaaaaaaaaaaaaaaaaaar");
                                 gridPane.getChildren().removeAll(buttonsToRemove1);
+<<<<<<< HEAD
                                 System.out.println(buttonsToRemove1);
                                 levelScores.score();
                                 scorelbl1.setText("" + levelScores.getScore());
                                 levelScores.moves();
                                 movesLbl1.setText("" + levelScores.getmoves());
+=======
+
+                                levelScores.score1();
+<<<<<<< HEAD
+                                levelScores.moves();
+                                movesLbl1.setText( ""+ levelScores.getmoves());
+                                
+                                Level1.setText(""+ levelScores.level());
+                                scorelbl1.setText( ""+ levelScores.getScore());
+                                
+                                
+                                
+                                
+                                
+
+                                
+=======
+                                scorelbl1.setText("" + levelScores.getScore());
+                                levelScores.moves();
+                                movesLbl1.setText("" + levelScores.getmoves());
+>>>>>>> 3922164292492d8ffec97ef5517cbdd701436bae
+>>>>>>> cc2acd8ac8f898ac8f68522d3397dc50b68a25d4
 
                             }
 
@@ -356,10 +404,23 @@ public class secondWindow {
                                 button.setGraphic(null);
                                 // button.setId("-2");
                                 gridPane.getChildren().removeAll(buttonsToRemove2);
+<<<<<<< HEAD
                                 levelScores.score();
                                 scorelbl1.setText("" + levelScores.getScore());
                                 levelScores.moves();
                                 movesLbl1.setText("" + levelScores.getmoves());
+=======
+                                levelScores.score1();
+<<<<<<< HEAD
+                                levelScores.moves();
+                                movesLbl1.setText( ""+ levelScores.getmoves());
+                                
+                                Level1.setText(""+ levelScores.level());
+                                scorelbl1.setText( ""+ levelScores.getScore());
+=======
+                                scorelbl1.setText("" + levelScores.getScore());
+>>>>>>> 3922164292492d8ffec97ef5517cbdd701436bae
+>>>>>>> cc2acd8ac8f898ac8f68522d3397dc50b68a25d4
 
                             }
                         } else {
