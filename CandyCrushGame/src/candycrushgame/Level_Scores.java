@@ -4,16 +4,17 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Level_Scores {
-     
+
     private int score = 0;
     private int move = 25;
     private int level;
     private String projectDir; // = System.getProperty("user.dir");
-        
-    public Level_Scores(){
-         projectDir = System.getProperty("user.dir");
-         System.out.println(System.getProperty("user.dir"));
+
+    public Level_Scores() {
+        projectDir = System.getProperty("user.dir");
+        System.out.println(System.getProperty("user.dir"));
     }
+
     public int level() {
         if (score <= 100) {
             level = 1;
@@ -41,9 +42,10 @@ public class Level_Scores {
 
     public void score1() {
         score += 10;
-             
+
     }
-    public void score2(){
+
+    public void score2() {
         score += 15;
     }
 
@@ -68,7 +70,7 @@ public class Level_Scores {
 
     public void saveLevelScore() {
         try {
-            
+
             File file = new File(projectDir + "\\level_score.txt");
             FileWriter fw = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fw);
@@ -87,7 +89,7 @@ public class Level_Scores {
     public void loadLevelScore() {
         try {
             File file = new File(projectDir + "\\level_score.txt");
-            
+
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -104,8 +106,6 @@ public class Level_Scores {
             e.printStackTrace();
         }
     }
-
-    
 
     public void moves() {
         move--;
