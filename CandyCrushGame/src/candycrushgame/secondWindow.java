@@ -46,15 +46,12 @@ public class secondWindow {
     List<Button> selectedButtons = new ArrayList<>();
     private List<Button> buttonsToRemove1 = new ArrayList<>();
     private List<Button> buttonsToRemove2 = new ArrayList<>();
-<<<<<<< HEAD
     private int lvl;
     private int mv;
     private String sc;
     private lbl scorelbl1;
     private lbl movesLbl1;
-=======
 
->>>>>>> 5c2dfaebb14471eaa70d9d9778d134d54dfc2a30
     private static final String[] IMAGE_PATHS = {
             "src\\items\\1.png",
             "src\\items\\2.png",
@@ -211,7 +208,7 @@ public class secondWindow {
             int col2 = GridPane.getColumnIndex(button2);
 
             if (row1 >= 0 && col1 >= 0 && row2 >= 0 && col2 >= 0) {
-<<<<<<< HEAD
+ 
 //                // Remove the buttons from the GridPane
                 gridPane.getChildren().removeAll(button1, button2);
                 gridPane.add(button1, col2, row2);
@@ -225,14 +222,13 @@ public class secondWindow {
 //                // Play the animations
 //                transition1.play();
 //                transition2.play();
-=======
+
                 gridPane.getChildren().removeAll(button1, button2);
                 gridPane.add(button1, col2, row2);
                 button1.setId(buttonId1);
                 gridPane.add(button2, col1, row1);
                 button2.setId(buttonId2);
 
->>>>>>> 5c2dfaebb14471eaa70d9d9778d134d54dfc2a30
             }
         }
     }
@@ -292,10 +288,7 @@ public class secondWindow {
                     Button button = (Button) node;
 
                     ImageView imageView = (ImageView) button.getGraphic();
-<<<<<<< HEAD
-=======
 
->>>>>>> 5c2dfaebb14471eaa70d9d9778d134d54dfc2a30
                     if (imageView != null) {
                         String currentId = imageView.getId();
                         buttonsToRemove1.add(button);
@@ -326,15 +319,12 @@ public class secondWindow {
 
                         } else {
                             count = 1;
-<<<<<<< HEAD
                             buttonsToRemove1.clear();
 
-=======
                             if (buttonsToRemove1.size() > 1) {
                                 buttonsToRemove1.clear();
                                 previousId = null;
                             }
->>>>>>> 5c2dfaebb14471eaa70d9d9778d134d54dfc2a30
                         }
 
                         previousId = currentId;
@@ -357,10 +347,6 @@ public class secondWindow {
                     Button button = (Button) node;
 
                     ImageView imageView = (ImageView) button.getGraphic();
-<<<<<<< HEAD
-=======
-
->>>>>>> 5c2dfaebb14471eaa70d9d9778d134d54dfc2a30
                     if (imageView != null) {
                         String currentId = imageView.getId();
                         buttonsToRemove2.add(button);
