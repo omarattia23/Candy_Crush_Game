@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     private int clickCount = 0;
     private MediaPlayer mediaPlayer1;
+    private MediaPlayer mediaPlayer2;
     @Override
     public void start(Stage primaryStage) {
         // Path
@@ -24,6 +25,7 @@ public class Main extends Application {
         Media media = new Media(s1);
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
+        mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.seek(javafx.util.Duration.ZERO));
         
         // sound of game
         File s2 = new File(projectDir, "/src/sound/game.wav");
@@ -31,6 +33,10 @@ public class Main extends Application {
         Media media1 = new Media(s3);
         mediaPlayer1 = new MediaPlayer(media1);
         mediaPlayer1.setOnEndOfMedia(() -> mediaPlayer1.seek(javafx.util.Duration.ZERO));
+        
+        
+        
+        
         firstWindow firstWindow = new firstWindow();
         secondWindow secondWindow = new secondWindow();
         File mute = new File(projectDir, "src/image/images2.jpg");
@@ -70,6 +76,35 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
     }
+    
+    public void movesound(){
+        String projectDir = System.getProperty("user.dir");
+        File s4 = new File(projectDir, "/src/sound/move.wav");
+        String s5 = s4.toURI().toString();
+        Media media2 = new Media(s5);
+        mediaPlayer2 = new MediaPlayer(media2);
+        mediaPlayer2.play();
+    } 
+    
+    public void selectsound(){
+        String projectDir = System.getProperty("user.dir");
+        File s4 = new File(projectDir, "/src/sound/select.wav");
+        String s5 = s4.toURI().toString();
+        Media media2 = new Media(s5);
+        mediaPlayer2 = new MediaPlayer(media2);
+        mediaPlayer2.play();
+    } 
+    
+    public void removesound(){
+        String projectDir = System.getProperty("user.dir");
+        File s4 = new File(projectDir, "/src/sound/remove.wav");
+        String s5 = s4.toURI().toString();
+        Media media2 = new Media(s5);
+        mediaPlayer2 = new MediaPlayer(media2);
+        mediaPlayer2.play();
+    } 
+    
+    
     
     public static void main(String[] args) {
         launch(args);

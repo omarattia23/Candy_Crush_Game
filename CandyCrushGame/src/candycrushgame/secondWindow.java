@@ -93,6 +93,11 @@ public class secondWindow {
                 button.setId(buttonId);
                 button.setOnAction(e -> handleButtonClick(button, gridPane, selectedButtons));
 
+                button.setOnMouseClicked(e-> {
+                Main m =new Main();
+                m.selectsound();
+                });
+                
                 imageView.setId(imageId);
 
                 gridPane.add(button, col, row);
@@ -246,9 +251,11 @@ public class secondWindow {
                 button1.setId(buttonId2);
                 gridPane.add(button2, col1, row1);
                 button2.setId(buttonId1);
-
-                levelScores.moves();
-                movesLbl1.setText("" + levelScores.getmoves());
+                
+                Main m =new Main();
+                m.movesound();
+                
+                
 
             }
         }
@@ -330,26 +337,19 @@ public class secondWindow {
                                 gridPane.getChildren().removeAll(buttonsToRemove1);
 
                                 System.out.println(buttonsToRemove1);
+                                
                                 levelScores.score1();
                                 scorelbl1.setText("" + levelScores.getScore());
                                 levelScores.moves();
                                 movesLbl1.setText("" + levelScores.getmoves());
+                                
+                                Main m =new Main();
+                                m.removesound();
 
                                 System.out.println(buttonsToRemove1);
-
-                                levelScores.score1();
-                                scorelbl1.setText("" + levelScores.getScore());
-                                levelScores.moves();
-                                movesLbl1.setText("" + levelScores.getmoves());
-
-                                levelScores.score1();
-                                levelScores.moves();
-                                movesLbl1.setText("" + levelScores.getmoves());
-                                Level1.setText("" + levelScores.level());
-                                scorelbl1.setText("" + levelScores.getScore());
-                                scorelbl1.setText("" + levelScores.getScore());
-                                levelScores.moves();
-                                movesLbl1.setText("" + levelScores.getmoves());
+                                
+                                
+                                
 
                             }
 
@@ -420,22 +420,9 @@ public class secondWindow {
                                     levelScores.moves();
                                     movesLbl1.setText("" + levelScores.getmoves());
                                      
-                                    levelScores.score1();
-                                    levelScores.moves();
-                                    movesLbl1.setText("" + levelScores.getmoves());
-
-                                    Level1.setText("" + levelScores.level());
-                                    scorelbl1.setText("" + levelScores.getScore());
-                                    scorelbl1.setText("" + levelScores.getScore());
-
-                                    levelScores.score1();
-
-                                    levelScores.moves();
-                                    movesLbl1.setText("" + levelScores.getmoves());
-
-                                    Level1.setText("" + levelScores.level());
-                                    scorelbl1.setText("" + levelScores.getScore());
-                                    scorelbl1.setText("" + levelScores.getScore());
+                                    Main m =new Main();
+                                    m.removesound();
+                                   
 
                                 }
                             } else {
@@ -488,7 +475,11 @@ public class secondWindow {
 
             button.setId(buttonId);
             button.setOnAction(e -> handleButtonClick(button, gridPane, selectedButtons));
+            
+            
+            
             imageView.setId(imageId);
+            
 
             gridPane.add(button, col, row);
         } catch (Exception e) {
