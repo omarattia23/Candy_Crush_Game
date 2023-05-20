@@ -98,13 +98,13 @@ public class secondWindow {
                 System.out.println("Failed to load image: " + imagePath);
             }
         }
-
         // Creating objection of level & scores
+        levelScores.loadLevelScore();
         lvl = levelScores.level();
         sc = levelScores.getScore();
         mv = levelScores.getmoves();
-        levelScores.saveLevelScore();
-        // levelScores.loadLevelScore();
+        // levelScores.saveLevelScore();
+        
 
         // set labels
         lbl scoreLbl0 = new lbl("Score:");

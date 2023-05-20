@@ -8,12 +8,7 @@ public class Level_Scores {
     private int score = 0;
     private int move = 25;
     private int level;
-    private String projectDir; // = System.getProperty("user.dir");
-
-    public Level_Scores() {
-        projectDir = System.getProperty("user.dir");
-        System.out.println(System.getProperty("user.dir"));
-    }
+    private String projectDir = System.getProperty("user.dir");
 
     public int level() {
         if (score <= 100) {

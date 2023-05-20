@@ -49,6 +49,7 @@ public class Main extends Application {
         imageView1.setFitWidth(20);
         imageView2.setFitHeight(20);
         imageView2.setFitWidth(20);
+        
         secondWindow.getmutebtn().setGraphic(imageView1);
         secondWindow.getmutebtn().setStyle("-fx-background-color: transparent;");
         secondWindow.getmutebtn().setOnAction(e -> {
