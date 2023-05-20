@@ -37,7 +37,6 @@ public class secondWindow {
 
     private final Button btnm;
 
-    
     List<Button> selectedButtons = new ArrayList<>();
 
     public final int lvl;
@@ -47,19 +46,19 @@ public class secondWindow {
     public static lbl movesLbl1;
 
     public static lbl Level1;
-    //creating objects of logic and level_Scores
+    // creating objects of logic and level_Scores
     logic logic = new logic();
-    Level_Scores levelScores  = new Level_Scores();
+    Level_Scores levelScores = new Level_Scores();
 
     public static final String[] IMAGE_PATHS = {
-        "src\\items\\1.png",
-        "src\\items\\2.png",
-        "src\\items\\3.png",
-        "src\\items\\4.png",
-        "src\\items\\5.png",
-        "src\\items\\6.png",
-        "src\\items\\7.png",
-        "src\\items\\8.jpeg"};
+            "src\\items\\1.png",
+            "src\\items\\2.png",
+            "src\\items\\3.png",
+            "src\\items\\4.png",
+            "src\\items\\5.png",
+            "src\\items\\6.png",
+            "src\\items\\7.png",
+            "src\\items\\8.jpeg" };
 
     public secondWindow() {
         VBox v = new VBox();
@@ -91,11 +90,6 @@ public class secondWindow {
 
                 button.setId(buttonId);
                 button.setOnAction(e -> logic.handleButtonClick(button, gridPane, selectedButtons));
-
-                button.setOnMouseClicked(e -> {
-                    Main m = new Main();
-                    m.selectsound();
-                });
 
                 imageView.setId(imageId);
 
@@ -147,7 +141,7 @@ public class secondWindow {
                 + "-fx-background-position: center center; "
                 + "-fx-background-repeat: stretch;");
 
-        logic.checkMatchedImages(gridPane,selectedButtons);
+        logic.checkMatchedImages(gridPane, selectedButtons);
         // Create a new scene
         scene2 = new Scene(v, 600, 650);
     }

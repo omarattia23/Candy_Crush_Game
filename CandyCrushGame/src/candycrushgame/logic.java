@@ -1,11 +1,12 @@
 package candycrushgame;
 
+import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-
+import javafx.util.Duration;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -17,7 +18,9 @@ public class logic {
     private List<Button> buttonsToRemove1 = new ArrayList<>();
     private List<Button> buttonsToRemove2 = new ArrayList<>();
     private boolean state = true;
+
     Level_Scores levelScores = new Level_Scores();
+    sounds sounds = new sounds();
 
     public Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
         for (Node node : gridPane.getChildren()) {
@@ -43,6 +46,7 @@ public class logic {
         if (selectedButton == null) {
             // No button is currently selected, so select the clicked button
             selectedButton = button;
+            sounds.selectsound();
             selectedButton.setStyle("-fx-border-color: red; -fx-border-width: 1;");
         } else {
             // A button is already selected, so perform the swap
@@ -53,7 +57,7 @@ public class logic {
             if (isNeighbors(gridPane, buttonId1, buttonId2)) {
                 swapButtonsInGridPane(gridPane, buttonId1, buttonId2);
 
-                checkMatchedImages(gridPane,selectedButtons);
+                checkMatchedImages(gridPane, selectedButtons);
                 if (state) {
                     swapButtonsInGridPane(gridPane, buttonId2, buttonId1);
                 }
@@ -66,6 +70,12 @@ public class logic {
             selectedButton = null;
         }
     }
+    // public TranslateTransition createTranslateTransition(Node node, int targetColumn, int targetRow) {
+    //     TranslateTransition transition = new TranslateTransition(Duration.millis(500), node);
+    //     transition.setToX(targetColumn * node.getBoundsInParent().getWidth());
+    //     transition.setToY(targetRow * node.getBoundsInParent().getHeight());
+    //     return transition;
+    // }
 
     public void swapButtonsInGridPane(GridPane gridPane, String buttonId1, String buttonId2) {
         // Retrieve the buttons using their IDs
@@ -81,48 +91,26 @@ public class logic {
             int col2 = GridPane.getColumnIndex(button2);
 
             if (row1 >= 0 && col1 >= 0 && row2 >= 0 && col2 >= 0) {
-
-                gridPane.getChildren().removeAll(button1, button2);
-                gridPane.add(button1, col2, row2);
-                gridPane.add(button2, col1, row1);
-
                 // // Create TranslateTransition for button1
                 // TranslateTransition transition1 = createTranslateTransition(button1, col2,
                 // row2);
                 // // Create TranslateTransition for button2
                 // TranslateTransition transition2 = createTranslateTransition(button2, col1,
                 // row1);
-                //
+                
                 // // Play the animations
                 // transition1.play();
                 // transition2.play();
-                gridPane.getChildren().removeAll(button1, button2);
-                gridPane.add(button1, col2, row2);
-                gridPane.add(button2, col1, row1);
-                button2.setId(buttonId2);
 
-                gridPane.getChildren().removeAll(button1, button2);
-                gridPane.add(button1, col2, row2);
-                gridPane.add(button2, col1, row1);
-
-                // // Create TranslateTransition for button1
-                // TranslateTransition transition1 = createTranslateTransition(button1, col2,
-                // row2);
-                // // Create TranslateTransition for button2
-                // TranslateTransition transition2 = createTranslateTransition(button2, col1,
-                // row1);
-                //
-                // // Play the animations
-                // transition1.play();
-                // transition2.play();
+                
                 gridPane.getChildren().removeAll(button1, button2);
                 gridPane.add(button1, col2, row2);
                 button1.setId(buttonId2);
                 gridPane.add(button2, col1, row1);
                 button2.setId(buttonId1);
 
-                Main m = new Main();
-                m.movesound();
+                
+                sounds.movesound();
 
             }
         }
@@ -164,9 +152,9 @@ public class logic {
     /**
      * ***********************************************************************
      * 
-     * @param gridPane
+     *
      */
-    public void checkMatchedImages(GridPane gridPane,List<Button> selectedButtons) {
+    public void checkMatchedImages(GridPane gridPane, List<Button> selectedButtons) {
 
         int gridSize = 8; // Assuming an 8x8 grid
 
@@ -200,7 +188,7 @@ public class logic {
                                 for (Button btn : buttonsToRemove1) {
                                     int col11 = GridPane.getColumnIndex(btn);
                                     int row11 = GridPane.getRowIndex(btn);
-                                    createRandomButton(gridPane, col11, row11,selectedButtons);
+                                    createRandomButton(gridPane, col11, row11, selectedButtons);
                                 }
                                 gridPane.getChildren().removeAll(buttonsToRemove1);
 
@@ -211,8 +199,8 @@ public class logic {
                                 levelScores.moves();
                                 secondWindow.movesLbl1.setText("" + levelScores.getmoves());
 
-                                Main m = new Main();
-                                m.removesound();
+                                
+                                sounds.removesound();
 
                                 System.out.println(buttonsToRemove1);
 
@@ -274,7 +262,7 @@ public class logic {
                                     for (Button btn : buttonsToRemove2) {
                                         int col11 = GridPane.getColumnIndex(btn);
                                         int row11 = GridPane.getRowIndex(btn);
-                                        createRandomButton(gridPane, col11, row11,selectedButtons);
+                                        createRandomButton(gridPane, col11, row11, selectedButtons);
                                     }
                                     gridPane.getChildren().removeAll(buttonsToRemove2);
                                     System.out.println(buttonsToRemove2);
@@ -284,8 +272,8 @@ public class logic {
                                     levelScores.moves();
                                     secondWindow.movesLbl1.setText("" + levelScores.getmoves());
 
-                                    Main m = new Main();
-                                    m.removesound();
+                                    
+                                    sounds.removesound();
 
                                 }
                             } else {
@@ -318,12 +306,12 @@ public class logic {
     /**
      * ***********************************************************************
      */
-    private void createRandomButton(GridPane gridPane, int col, int row,List<Button> selectedButtons) {
+    private void createRandomButton(GridPane gridPane, int col, int row, List<Button> selectedButtons) {
         Node node = getNodeFromGridPane(gridPane, col, row);
         Button button11 = (Button) node;
         Random random = new Random();
         gridPane.getChildren().remove(button11);
-        String [] img_paths = secondWindow.IMAGE_PATHS;
+        String[] img_paths = secondWindow.IMAGE_PATHS;
         String imagePath = img_paths[random.nextInt(img_paths.length)];
         java.nio.file.Path path = Paths.get(imagePath);
         try {
