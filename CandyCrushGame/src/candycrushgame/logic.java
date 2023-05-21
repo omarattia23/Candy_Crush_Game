@@ -199,7 +199,7 @@ public class logic {
                                 secondWindow.scorelbl1.setText("" + levelScores.getScore());
                                 levelScores.moves();
                                 secondWindow.movesLbl1.setText("" + levelScores.getmoves());
-                                // levelScores.level();
+                                
                                 
                                 sounds.removesound();
 
