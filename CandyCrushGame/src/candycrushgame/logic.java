@@ -177,7 +177,7 @@ public class logic {
                         if (previousId != null && currentId.equals(previousId)) {
                             count++;
                             buttonsToRemove1.add(button);
-
+                            
                             if (count >= 3) {
                                 // Three or more consecutive matching images found in a row
                                 System.out.println("true");
@@ -190,6 +190,7 @@ public class logic {
                                     int row11 = GridPane.getRowIndex(btn);
                                     createRandomButton(gridPane, col11, row11, selectedButtons);
                                 }
+
                                 gridPane.getChildren().removeAll(buttonsToRemove1);
 
                                 System.out.println(buttonsToRemove1);
@@ -198,7 +199,7 @@ public class logic {
                                 secondWindow.scorelbl1.setText("" + levelScores.getScore());
                                 levelScores.moves();
                                 secondWindow.movesLbl1.setText("" + levelScores.getmoves());
-
+                                // levelScores.level();
                                 
                                 sounds.removesound();
 
@@ -212,6 +213,8 @@ public class logic {
 
                             if (buttonsToRemove1.size() > 1) {
                                 buttonsToRemove1.clear();
+                                state =true;
+
 
                             }
                         }
@@ -280,7 +283,7 @@ public class logic {
                                 count = 1;
                                 if (buttonsToRemove2.size() > 1) {
                                     buttonsToRemove2.clear();
-
+                                    state =true;
                                 }
                             }
 
@@ -332,6 +335,7 @@ public class logic {
             imageView.setId(imageId);
 
             gridPane.add(button, col, row);
+            // checkMatchedImages(gridPane, selectedButtons);
         } catch (Exception e) {
             System.out.println("Failed to load image: " + imagePath);
         }

@@ -98,6 +98,7 @@ public class secondWindow {
                 System.out.println("Failed to load image: " + imagePath);
             }
         }
+        
         // Creating objection of level & scores
         levelScores.loadLevelScore();
         lvl = levelScores.level();
@@ -141,11 +142,11 @@ public class secondWindow {
                 + "-fx-background-position: center center; "
                 + "-fx-background-repeat: stretch;");
 
-        logic.checkMatchedImages(gridPane, selectedButtons);
-        // Create a new scene
-        scene2 = new Scene(v, 600, 650);
-    }
-
+                
+                // Create a new scene
+                scene2 = new Scene(v, 600, 650);
+            }
+            
     public Scene getScene2() {
         return scene2;
     }
