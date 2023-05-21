@@ -99,8 +99,7 @@ public class PopoutWindow extends Stage {
         root.setAlignment(Pos.BOTTOM_CENTER);
         root.setPadding(new Insets(40));
         Scene scene = new Scene(root, 300, 350);
-         
-      
+
         
         // Set the scene for the popout window
         this.setScene(scene);

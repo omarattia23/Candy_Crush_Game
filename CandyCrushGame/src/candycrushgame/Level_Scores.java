@@ -104,6 +104,8 @@ public class Level_Scores {
 
     public void moves() {
         move--;
+        // PopoutWindow popoutWindow = new PopoutWindow();
+        // popoutWindow.show();
     }
 
     public int getmoves() {

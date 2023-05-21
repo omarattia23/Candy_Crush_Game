@@ -71,6 +71,8 @@ public class Main extends Application {
             mediaPlayer1.play();
         });
 
+        
+
         primaryStage.setTitle("Candy Crush");
         primaryStage.setResizable(false);
         primaryStage.show();
