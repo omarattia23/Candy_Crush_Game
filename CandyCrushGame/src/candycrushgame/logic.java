@@ -335,7 +335,10 @@ public class logic {
             imageView.setId(imageId);
 
             gridPane.add(button, col, row);
-            // checkMatchedImages(gridPane, selectedButtons);
+            // try{
+            //     checkMatchedImages(gridPane, null);
+            // }catch(Exception e){System.out.println(e);}
+
         } catch (Exception e) {
             System.out.println("Failed to load image: " + imagePath);
         }

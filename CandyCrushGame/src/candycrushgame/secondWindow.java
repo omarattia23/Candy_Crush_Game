@@ -98,6 +98,11 @@ public class secondWindow {
                 System.out.println("Failed to load image: " + imagePath);
             }
         }
+        try{
+            logic.checkMatchedImages(gridPane,selectedButtons);
+        }catch (Exception e){
+            System.out.println(e);
+        }
         
         // Creating objection of level & scores
         levelScores.loadLevelScore();
