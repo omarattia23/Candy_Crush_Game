@@ -47,16 +47,26 @@ public class Level_Scores {
     public String getScore() {
         String maxScore = "";
         switch (level) {
-            case 1 -> maxScore = "/100";
-            case 2 -> maxScore = "/250";
-            case 3 -> maxScore = "/450";
-            case 4 -> maxScore = "/700";
-            case 5 -> maxScore = "/1000";
-            case 6 -> maxScore = "/1300";
-            case 7 -> maxScore = "/1650";
-            case 8 -> maxScore = "/2050";
-            case 9 -> maxScore = "/2500";
-            case 10 -> maxScore = "/3000";
+            case 1 ->
+                maxScore = "/100";
+            case 2 ->
+                maxScore = "/250";
+            case 3 ->
+                maxScore = "/450";
+            case 4 ->
+                maxScore = "/700";
+            case 5 ->
+                maxScore = "/1000";
+            case 6 ->
+                maxScore = "/1300";
+            case 7 ->
+                maxScore = "/1650";
+            case 8 ->
+                maxScore = "/2050";
+            case 9 ->
+                maxScore = "/2500";
+            case 10 ->
+                maxScore = "/3000";
             default -> {
             }
         }
@@ -104,8 +114,15 @@ public class Level_Scores {
 
     public void moves() {
         move--;
-        PopoutWindow popoutWindow = new PopoutWindow();
-        popoutWindow.show();
+
+        if (move == 0) {
+            PopoutWindow popoutWindow = new PopoutWindow();
+            popoutWindow.show();
+        }
+    }
+
+    public void setMove(int move) {
+        this.move = move;
     }
 
     public int getmoves() {

@@ -74,6 +74,11 @@ public class PopoutWindow extends Stage {
                 Platform.exit();
             }
         });
+        newgamebtn.setOnAction (e->{
+            Level_Scores level = new Level_Scores() ;
+            level.setMove(25) ;
+            this.close () ;
+        }) ;
 
         // add items
         layout1.getChildren().add(lbl);
