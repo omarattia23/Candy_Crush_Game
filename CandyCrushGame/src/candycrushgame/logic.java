@@ -70,11 +70,13 @@ public class logic {
             selectedButton = null;
         }
     }
-    // public TranslateTransition createTranslateTransition(Node node, int targetColumn, int targetRow) {
-    //     TranslateTransition transition = new TranslateTransition(Duration.millis(500), node);
-    //     transition.setToX(targetColumn * node.getBoundsInParent().getWidth());
-    //     transition.setToY(targetRow * node.getBoundsInParent().getHeight());
-    //     return transition;
+    // public TranslateTransition createTranslateTransition(Node node, int
+    // targetColumn, int targetRow) {
+    // TranslateTransition transition = new
+    // TranslateTransition(Duration.millis(500), node);
+    // transition.setToX(targetColumn * node.getBoundsInParent().getWidth());
+    // transition.setToY(targetRow * node.getBoundsInParent().getHeight());
+    // return transition;
     // }
 
     public void swapButtonsInGridPane(GridPane gridPane, String buttonId1, String buttonId2) {
@@ -97,19 +99,17 @@ public class logic {
                 // // Create TranslateTransition for button2
                 // TranslateTransition transition2 = createTranslateTransition(button2, col1,
                 // row1);
-                
+
                 // // Play the animations
                 // transition1.play();
                 // transition2.play();
 
-                
                 gridPane.getChildren().removeAll(button1, button2);
                 gridPane.add(button1, col2, row2);
                 button1.setId(buttonId2);
                 gridPane.add(button2, col1, row1);
                 button2.setId(buttonId1);
 
-                
                 sounds.movesound();
 
             }
@@ -177,7 +177,7 @@ public class logic {
                         if (previousId != null && currentId.equals(previousId)) {
                             count++;
                             buttonsToRemove1.add(button);
-                            
+
                             if (count >= 3) {
                                 // Three or more consecutive matching images found in a row
                                 System.out.println("true");
@@ -199,8 +199,8 @@ public class logic {
                                 secondWindow.scorelbl1.setText("" + levelScores.getScore());
                                 levelScores.moves();
                                 secondWindow.movesLbl1.setText("" + levelScores.getmoves());
-                                
-                                
+                                secondWindow.Level1.setText("" + levelScores.level());
+
                                 sounds.removesound();
 
                                 System.out.println(buttonsToRemove1);
@@ -213,8 +213,7 @@ public class logic {
 
                             if (buttonsToRemove1.size() > 1) {
                                 buttonsToRemove1.clear();
-                                state =true;
-
+                                state = true;
 
                             }
                         }
@@ -234,6 +233,7 @@ public class logic {
 
             }
         }
+        // check columns
         for (int col = 0; col < gridSize; col++) {
             int count = 1;
             String previousId = null;
@@ -274,8 +274,8 @@ public class logic {
                                     secondWindow.scorelbl1.setText("" + levelScores.getScore());
                                     levelScores.moves();
                                     secondWindow.movesLbl1.setText("" + levelScores.getmoves());
+                                    secondWindow.Level1.setText("" + levelScores.level());
 
-                                    
                                     sounds.removesound();
 
                                 }
@@ -283,7 +283,7 @@ public class logic {
                                 count = 1;
                                 if (buttonsToRemove2.size() > 1) {
                                     buttonsToRemove2.clear();
-                                    state =true;
+                                    state = true;
                                 }
                             }
 
@@ -336,12 +336,12 @@ public class logic {
 
             gridPane.add(button, col, row);
             // try{
-            //     checkMatchedImages(gridPane, null);
+            // checkMatchedImages(gridPane, null);
             // }catch(Exception e){System.out.println(e);}
 
         } catch (Exception e) {
             System.out.println("Failed to load image: " + imagePath);
         }
-        
+
     }
 }
