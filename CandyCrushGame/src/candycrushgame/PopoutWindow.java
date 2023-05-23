@@ -34,7 +34,7 @@ class btn extends Button {
 }
 
 public class PopoutWindow extends Stage {
-
+    
     public PopoutWindow() {
         // Create the layout for the popout window
         HBox layout1 = new HBox(10);
@@ -54,12 +54,13 @@ public class PopoutWindow extends Stage {
         lbl.setFont(new Font("Cambria",32));
         lbl.setPadding(new Insets(7));
         lbl.setTextFill(Color.PURPLE);
-//        lbl.setTextFill(Color.PURPLE);
+    //    lbl.setTextFill(Color.PURPLE);
 //        lbl.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE, null, new Insets(10))));
         lbl.setOpacity(0.8);
         
         // create buttons
         btn newgamebtn = new btn("New Game");
+        newgamebtn.setOnAction(e->{this.close();});
         btn closeButton = new btn("Close");
         // set close button on action
         closeButton.setOnAction(e -> {
@@ -104,7 +105,7 @@ public class PopoutWindow extends Stage {
         // Set the scene for the popout window
         this.setScene(scene);
         this.setTitle("Candy Crush");
-        this.show();
+        
     }
 
 }

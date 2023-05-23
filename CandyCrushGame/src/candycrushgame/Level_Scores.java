@@ -66,7 +66,7 @@ public class Level_Scores {
     public void saveLevelScore() {
         try {
 
-            File file = new File(projectDir + "\\level_score.txt");
+            File file = new File(projectDir + "\\src\\level_score.txt");
             FileWriter fw = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write("Level: " + level);
@@ -83,7 +83,7 @@ public class Level_Scores {
 
     public void loadLevelScore() {
         try {
-            File file = new File(projectDir + "\\level_score.txt");
+            File file = new File(projectDir + "\\src\\level_score.txt");
 
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
@@ -104,8 +104,8 @@ public class Level_Scores {
 
     public void moves() {
         move--;
-        // PopoutWindow popoutWindow = new PopoutWindow();
-        // popoutWindow.show();
+        PopoutWindow popoutWindow = new PopoutWindow();
+        popoutWindow.show();
     }
 
     public int getmoves() {
