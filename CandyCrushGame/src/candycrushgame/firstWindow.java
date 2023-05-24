@@ -64,15 +64,12 @@ public class firstWindow {
                 Platform.exit();
             }
         });
-
         // getChildren().addAll(v);
         scene1 = new Scene(v, 600, 650);
     }
-
     public Scene getScene1() {
         return scene1;
     }
-
     public Button newgamebtn() {
         return newgamebtn;
     }

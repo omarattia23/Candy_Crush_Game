@@ -21,7 +21,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-
 class btn extends Button {
 
     public btn(String s) {
@@ -29,12 +28,12 @@ class btn extends Button {
         setMinSize(270, 40);
         setText(s);
         setOpacity(0.8);
-        
+
     }
 }
 
 public class PopoutWindow extends Stage {
-    
+
     public PopoutWindow() {
         // Create the layout for the popout window
         HBox layout1 = new HBox(10);
@@ -60,11 +59,14 @@ public class PopoutWindow extends Stage {
         
         // create buttons
         btn newgamebtn = new btn("New Game");
-        newgamebtn.setOnAction(e->{this.close();});
+        newgamebtn.setOnAction (e->{
+            Level_Scores level = new Level_Scores() ;
+            level.setMove(25) ;
+            this.close ();
+        });
         btn closeButton = new btn("Close");
         // set close button on action
         closeButton.setOnAction(e -> {
-
             Alert A = new Alert(Alert.AlertType.CONFIRMATION);
             A.setTitle("Confirm Exit");
             A.setContentText("Are you sure , you want to exit ?");

@@ -75,14 +75,8 @@ public class Main extends Application {
         primaryStage.setTitle("Candy Crush");
         primaryStage.setResizable(false);
         primaryStage.show();
-        PopoutWindow popoutWindow = new PopoutWindow();
-        popoutWindow.setOnCloseRequest(e->{primaryStage.setScene(firstWindow.getScene1());}); 
         
     }
-
-    
-
-    
 
     public static void main(String[] args) {
         launch(args);

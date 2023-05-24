@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Level_Scores {
 
     private int score = 0;
-    private int move = 25;
+    private int move = 4;
     private int level;
     private String projectDir = System.getProperty("user.dir");
 
