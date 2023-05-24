@@ -10,9 +10,9 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
     private int clickCount = 0;
     private MediaPlayer mediaPlayer1;
-
 
     @Override
     public void start(Stage primaryStage) {
@@ -49,7 +49,7 @@ public class Main extends Application {
         imageView1.setFitWidth(20);
         imageView2.setFitHeight(20);
         imageView2.setFitWidth(20);
-        
+
         secondWindow.getmutebtn().setGraphic(imageView1);
         secondWindow.getmutebtn().setStyle("-fx-background-color: transparent;");
         secondWindow.getmutebtn().setOnAction(e -> {
@@ -71,18 +71,15 @@ public class Main extends Application {
             mediaPlayer1.play();
         });
 
-        
         primaryStage.setTitle("Candy Crush");
         primaryStage.setResizable(false);
         primaryStage.show();
         PopoutWindow popoutWindow = new PopoutWindow();
-        popoutWindow.setOnCloseRequest(e->{primaryStage.setScene(firstWindow.getScene1());}); 
-        
+        popoutWindow.setOnCloseRequest(e -> {
+            primaryStage.setScene(firstWindow.getScene1());
+        });
+
     }
-
-    
-
-    
 
     public static void main(String[] args) {
         launch(args);
