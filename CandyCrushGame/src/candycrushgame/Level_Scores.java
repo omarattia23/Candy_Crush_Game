@@ -57,27 +57,27 @@ public class Level_Scores {
     public String getScore() {
         String maxScore = "";
         switch (level) {
-            case 1:
+            case 1 ->
                 maxScore = "/100";
-            case 2:
+            case 2 ->
                 maxScore = "/250";
-            case 3:
+            case 3 ->
                 maxScore = "/450";
-            case 4:
+            case 4 ->
                 maxScore = "/700";
-            case 5:
+            case 5 ->
                 maxScore = "/1000";
-            case 6:
+            case 6 ->
                 maxScore = "/1300";
-            case 7:
+            case 7 ->
                 maxScore = "/1650";
-            case 8:
+            case 8 ->
                 maxScore = "/2050";
-            case 9:
+            case 9 ->
                 maxScore = "/2500";
-            case 10:
+            case 10 ->
                 maxScore = "/3000";
-            default: {
+            default -> {
             }
         }
         return ("" + score + maxScore);
