@@ -210,27 +210,21 @@ public class logic {
                         } else {
                             count = 1;
                             buttonsToRemove1.clear();
-
                             if (buttonsToRemove1.size() > 1) {
                                 buttonsToRemove1.clear();
                                 state = true;
-
                             }
                         }
                         previousId = currentId;
-
                         if (count == 1) {
                             buttonsToRemove1.add(button);
                         }
-
                         if (count == 1) {
                             buttonsToRemove1.add(button);
                         }
-
                     }
                 }
                 // System.out.println("false");
-
             }
         }
         // check columns
@@ -239,11 +233,8 @@ public class logic {
             String previousId = null;
             for (int row = 0; row < gridSize; row++) {
                 Node node = getNodeFromGridPane(gridPane, col, row);
-
                 if (node instanceof Button button) {
-
                     if (node instanceof Button) {
-
                         ImageView imageView = (ImageView) button.getGraphic();
                         if (imageView != null) {
                             String currentId = imageView.getId();
@@ -256,11 +247,8 @@ public class logic {
                                     // Three or more consecutive matching images found in a row
                                     System.out.println("true");
                                     button.setGraphic(null);
-
                                     state = false;
-
                                     gridPane.getChildren().removeAll(buttonsToRemove2);
-
                                     // button.setId("-2");
                                     for (Button btn : buttonsToRemove2) {
                                         int col11 = GridPane.getColumnIndex(btn);
@@ -269,15 +257,12 @@ public class logic {
                                     }
                                     gridPane.getChildren().removeAll(buttonsToRemove2);
                                     System.out.println(buttonsToRemove2);
-
                                     levelScores.score1();
                                     secondWindow.scorelbl1.setText("" + levelScores.getScore());
                                     levelScores.moves();
                                     secondWindow.movesLbl1.setText("" + levelScores.getmoves());
                                     secondWindow.Level1.setText("" + levelScores.level());
-
                                     sounds.removesound();
-
                                 }
                             } else {
                                 count = 1;
@@ -286,20 +271,15 @@ public class logic {
                                     state = true;
                                 }
                             }
-
                             previousId = currentId;
                             if (count == 1) {
                                 buttonsToRemove2.add(button);
                             }
-
                         }
-
                     }
                     // System.out.println("false");
                 }
-
             }
-
         }
     }
 

@@ -28,7 +28,7 @@ class btnpop extends Button {
         setMinSize(270, 40);
         setText(s);
         setOpacity(0.8);
-        
+
     }
 }
 
