@@ -59,7 +59,7 @@ public class logic {
 
                 checkMatchedImages(gridPane, selectedButtons);
                 if (state) {
-                    swapButtonsInGridPane(gridPane, buttonId2, buttonId1);
+                   swapButtonsInGridPane(gridPane, buttonId2, buttonId1);
                 }
             }
             // Deselect the buttons

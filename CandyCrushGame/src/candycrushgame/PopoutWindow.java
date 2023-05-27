@@ -34,7 +34,7 @@ class btnpop extends Button {
 
 public class PopoutWindow extends Stage {
     
-    Level_Scores level = new Level_Scores();
+    Level_Scores levelScores = new Level_Scores();
     
     public PopoutWindow() {
         // Create the layout for the popout window
@@ -49,10 +49,11 @@ public class PopoutWindow extends Stage {
         layout2.setAlignment(Pos.BASELINE_CENTER);
         layout3.setAlignment(Pos.BASELINE_CENTER);
         Label lbl = new Label();
-        if (level.getmoves() >= 0 && level.getcountOfLevel() > 1 || level.getmoves() == 0 && level.getcountOfLevel() == 1) {
-            lbl.setText("Congratulation");
-            
-        }else {lbl.setText("Game Over");}
+        if (( levelScores.getmoves() > 0 && levelScores.getcountOfLevel() > levelScores.getLastLevel () ) || (levelScores.getmoves() == 0 && levelScores.getcountOfLevel() == levelScores.getLastLevel () +1)) {
+            lbl.setText("Congratulation");} 
+        else if ( levelScores.getmoves() <= 0 ){
+           
+        lbl.setText("GameOver");} 
         //create Label
 
         //lbl size
@@ -68,7 +69,8 @@ public class PopoutWindow extends Stage {
         btnpop newgamebtn = new btnpop("New Game");
         newgamebtn.setOnAction(e -> {
             
-            level.setMove(25);
+            levelScores.setMove(15);
+            
             this.close();
         });
         btnpop closeButton = new btnpop("Close");

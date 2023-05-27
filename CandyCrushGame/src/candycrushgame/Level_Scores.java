@@ -4,43 +4,66 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Level_Scores {
-    public static int countOfLevel  ;
+
+    public static int countOfLevel;
+    public static int lastLevel;
+    public boolean checkLevel = false;
     private int score = 0;
-    private int move = 25;
+    private int move = 15;
     private int level;
     private String projectDir = System.getProperty("user.dir");
 
     public int level() {
         if (score <= 100) {
             level = 1;
-            countOfLevel=1;
+            countOfLevel = 1;
+            lastLevel = 0;
+
         } else if (score > 100 && score <= 250) {
             level = 2;
-            countOfLevel =2;
+            countOfLevel++;
+            lastLevel++;
+            checkLevel = true;
         } else if (score > 250 && score <= 450) {
             level = 3;
-            countOfLevel =3;
+            countOfLevel++;
+            lastLevel++;
+            checkLevel = true;
         } else if (score > 450 && score <= 700) {
-            level = 4;
-            countOfLevel =4;
+           level = 4;
+            countOfLevel++;
+            lastLevel++;
+            checkLevel = true;
         } else if (score > 700 && score <= 1000) {
             level = 5;
-            countOfLevel =5;
+            countOfLevel++;
+            lastLevel++;
+            checkLevel = true;
         } else if (score > 1000 && score <= 1300) {
             level = 6;
-            countOfLevel =6;
+            countOfLevel++;
+            lastLevel++;
+            checkLevel = true;
         } else if (score > 1300 && score <= 1650) {
             level = 7;
-            countOfLevel =7;
+            countOfLevel++;
+            lastLevel++;
+            checkLevel = true;
         } else if (score > 1650 && score <= 2050) {
-            level = 8;
-            countOfLevel =8;
+           level = 8;
+            countOfLevel++;
+            lastLevel++;
+            checkLevel = true;
         } else if (score > 2050 && score <= 2500) {
             level = 9;
-            countOfLevel =9;
+            countOfLevel++;
+            lastLevel++;
+            checkLevel = true;
         } else if (score > 2500 && score <= 3000) {
-            level = 10;
-            countOfLevel =10;
+           level = 10;
+            countOfLevel++;
+            lastLevel++;
+            checkLevel = true;
         }
         return level;
     }
@@ -125,23 +148,29 @@ public class Level_Scores {
     public void moves() {
         move--;
 
-        if (move == 0 || countOfLevel >1) {
+        if (move == 0 || checkLevel ) {
             PopoutWindow popoutWindow = new PopoutWindow();
-            
+
             popoutWindow.show();
-            
+
         }
     }
-    
+
     public void setMove(int move) {
         this.move = move;
     }
 
     public int getmoves() {
-        return move;
+        return this.move;
     }
-     
+
     public int getcountOfLevel() {
         return countOfLevel;
+    }
+
+    public int getLastLevel() {
+
+        return lastLevel;
+
     }
 }

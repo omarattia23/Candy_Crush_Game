@@ -108,7 +108,8 @@ public class secondWindow {
         levelScores.loadLevelScore();
         lvl = levelScores.level();
         sc = levelScores.getScore();
-        mv = levelScores.getmoves();
+        mv = levelScores.getmoves() ;
+         
         // levelScores.saveLevelScore();
         
 
