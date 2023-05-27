@@ -49,9 +49,9 @@ public class PopoutWindow extends Stage {
         layout2.setAlignment(Pos.BASELINE_CENTER);
         layout3.setAlignment(Pos.BASELINE_CENTER);
         Label lbl = new Label();
-        if (( levelScores.getmoves() > 0 && levelScores.getcountOfLevel() > levelScores.getLastLevel () ) || (levelScores.getmoves() == 0 && levelScores.getcountOfLevel() == levelScores.getLastLevel () +1)) {
+        if (( levelScores.getmoves() >= 0 && levelScores.getcountOfLevel() > levelScores.getLastLevel () ) || (levelScores.getmoves() == 0 && levelScores.getcountOfLevel() == levelScores.getLastLevel () +1)) {
             lbl.setText("Congratulation");} 
-        else if ( levelScores.getmoves() <= 0 ){
+        else {//if ( levelScores.getmoves() < 0 ){
            
         lbl.setText("GameOver");} 
         //create Label
@@ -70,7 +70,8 @@ public class PopoutWindow extends Stage {
         newgamebtn.setOnAction(e -> {
             
             levelScores.setMove(15);
-            
+            secondWindow.movesLbl1.setText("" + levelScores.getmoves());
+            secondWindow.Level1.setText("" + levelScores.setScore (0));
             this.close();
         });
         btnpop closeButton = new btnpop("Close");

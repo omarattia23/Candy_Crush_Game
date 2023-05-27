@@ -9,7 +9,7 @@ public class Level_Scores {
     public static int lastLevel;
     public boolean checkLevel = false;
     private int score = 0;
-    private int move = 15;
+    private static int move = 15;
     private int level;
     private String projectDir = System.getProperty("user.dir");
 
@@ -161,9 +161,11 @@ public class Level_Scores {
     }
 
     public int getmoves() {
-        return this.move;
+        return move;
     }
-
+    public int getLevel () {
+    return level ;
+    }
     public int getcountOfLevel() {
         return countOfLevel;
     }
@@ -171,6 +173,13 @@ public class Level_Scores {
     public int getLastLevel() {
 
         return lastLevel;
-
+    
     }
+    
+    public int setScore (int score){
+    
+    this.score= score ;
+    return 0;
+    }
+    
 }
