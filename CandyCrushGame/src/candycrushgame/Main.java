@@ -22,7 +22,7 @@ public class Main extends Application {
         // sound of main window
         File s0 = new File(projectDir, "src/sound/Candy.wav");
         String s1 = s0.toURI().toString();
-        System.out.println(s1);
+        // System.out.println(s1);
         Media media = new Media(s1);
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
@@ -74,10 +74,7 @@ public class Main extends Application {
         primaryStage.setTitle("Candy Crush");
         primaryStage.setResizable(false);
         primaryStage.show();
-        PopoutWindow popoutWindow = new PopoutWindow();
-        popoutWindow.setOnCloseRequest(e -> {
-            primaryStage.setScene(firstWindow.getScene1());
-        });
+        
 
     }
 

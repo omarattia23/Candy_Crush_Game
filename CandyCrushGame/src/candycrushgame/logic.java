@@ -59,7 +59,7 @@ public class logic {
 
                 checkMatchedImages(gridPane, selectedButtons);
                 if (state) {
-                   swapButtonsInGridPane(gridPane, buttonId2, buttonId1);
+                    swapButtonsInGridPane(gridPane, buttonId2, buttonId1);
                 }
             }
             // Deselect the buttons
@@ -121,22 +121,14 @@ public class logic {
         int rowIndex = -1;
         int columnIndex2 = -1;
         int rowIndex2 = -1;
-        for (Node node : gridPane.getChildren()) {
 
-            if (node instanceof Button && buttonId1.equals(node.getId())) {
-                columnIndex = GridPane.getColumnIndex(node);
-                rowIndex = GridPane.getRowIndex(node);
+        Button button1 = findButtonById(gridPane, buttonId1);
+        columnIndex = GridPane.getColumnIndex(button1);
+        rowIndex = GridPane.getRowIndex(button1);
 
-            }
-
-        }
-        for (Node node : gridPane.getChildren()) {
-            if (node instanceof Button && buttonId2.equals(node.getId())) {
-                columnIndex2 = GridPane.getColumnIndex(node);
-                rowIndex2 = GridPane.getRowIndex(node);
-
-            }
-        }
+        Button button2 = findButtonById(gridPane, buttonId2);
+        columnIndex2 = GridPane.getColumnIndex(button2);
+        rowIndex2 = GridPane.getRowIndex(button2);
 
         if (((Math.abs(rowIndex - rowIndex2) == 1) && (columnIndex == columnIndex2))
                 || ((Math.abs(columnIndex - columnIndex2) == 1) && (rowIndex == rowIndex2))) {
@@ -171,7 +163,6 @@ public class logic {
 
                     if (imageView != null) {
                         String currentId = imageView.getId();
-                        buttonsToRemove1.add(button);
 
                         // System.out.println("error..");
                         if (previousId != null && currentId.equals(previousId)) {
@@ -209,16 +200,12 @@ public class logic {
 
                         } else {
                             count = 1;
-                            buttonsToRemove1.clear();
                             if (buttonsToRemove1.size() > 1) {
                                 buttonsToRemove1.clear();
                                 state = true;
                             }
                         }
                         previousId = currentId;
-                        if (count == 1) {
-                            buttonsToRemove1.add(button);
-                        }
                         if (count == 1) {
                             buttonsToRemove1.add(button);
                         }
@@ -234,47 +221,43 @@ public class logic {
             for (int row = 0; row < gridSize; row++) {
                 Node node = getNodeFromGridPane(gridPane, col, row);
                 if (node instanceof Button button) {
-                    if (node instanceof Button) {
-                        ImageView imageView = (ImageView) button.getGraphic();
-                        if (imageView != null) {
-                            String currentId = imageView.getId();
+                    ImageView imageView = (ImageView) button.getGraphic();
+                    if (imageView != null) {
+                        String currentId = imageView.getId();
+                        // System.out.println("error..");
+                        if (previousId != null && currentId.equals(previousId)) {
+                            count++;
                             buttonsToRemove2.add(button);
-                            // System.out.println("error..");
-                            if (previousId != null && currentId.equals(previousId)) {
-                                count++;
-                                buttonsToRemove2.add(button);
-                                if (count >= 3) {
-                                    // Three or more consecutive matching images found in a row
-                                    System.out.println("true");
-                                    button.setGraphic(null);
-                                    state = false;
-                                    gridPane.getChildren().removeAll(buttonsToRemove2);
-                                    // button.setId("-2");
-                                    for (Button btn : buttonsToRemove2) {
-                                        int col11 = GridPane.getColumnIndex(btn);
-                                        int row11 = GridPane.getRowIndex(btn);
-                                        createRandomButton(gridPane, col11, row11, selectedButtons);
-                                    }
-                                    gridPane.getChildren().removeAll(buttonsToRemove2);
-                                    System.out.println(buttonsToRemove2);
-                                    levelScores.score1();
-                                    secondWindow.scorelbl1.setText("" + levelScores.getScore());
-                                    levelScores.moves();
-                                    secondWindow.movesLbl1.setText("" + levelScores.getmoves());
-                                    secondWindow.Level1.setText("" + levelScores.level());
-                                    sounds.removesound();
+                            if (count >= 3) {
+                                // Three or more consecutive matching images found in a row
+                                System.out.println("true");
+                                button.setGraphic(null);
+                                state = false;
+                                gridPane.getChildren().removeAll(buttonsToRemove2);
+                                // button.setId("-2");
+                                for (Button btn : buttonsToRemove2) {
+                                    int col11 = GridPane.getColumnIndex(btn);
+                                    int row11 = GridPane.getRowIndex(btn);
+                                    createRandomButton(gridPane, col11, row11, selectedButtons);
                                 }
-                            } else {
-                                count = 1;
-                                if (buttonsToRemove2.size() > 1) {
-                                    buttonsToRemove2.clear();
-                                    state = true;
-                                }
+                                System.out.println(buttonsToRemove2);
+                                levelScores.score1();
+                                secondWindow.scorelbl1.setText("" + levelScores.getScore());
+                                levelScores.moves();
+                                secondWindow.movesLbl1.setText("" + levelScores.getmoves());
+                                secondWindow.Level1.setText("" + levelScores.level());
+                                sounds.removesound();
                             }
-                            previousId = currentId;
-                            if (count == 1) {
-                                buttonsToRemove2.add(button);
+                        } else {
+                            count = 1;
+                            if (buttonsToRemove2.size() > 1) {
+                                buttonsToRemove2.clear();
+                                state = true;
                             }
+                        }
+                        previousId = currentId;
+                        if (count == 1) {
+                            buttonsToRemove2.add(button);
                         }
                     }
                     // System.out.println("false");
@@ -315,13 +298,13 @@ public class logic {
             imageView.setId(imageId);
 
             gridPane.add(button, col, row);
-            // try{
-            // checkMatchedImages(gridPane, null);
-            // }catch(Exception e){System.out.println(e);}
 
         } catch (Exception e) {
             System.out.println("Failed to load image: " + imagePath);
         }
+        // try{
+        // checkMatchedImages(gridPane, null);
+        // }catch(Exception e){System.out.println(e);}
 
     }
 }

@@ -30,7 +30,7 @@ public class Level_Scores {
             lastLevel++;
             checkLevel = true;
         } else if (score > 450 && score <= 700) {
-           level = 4;
+            level = 4;
             countOfLevel++;
             lastLevel++;
             checkLevel = true;
@@ -50,7 +50,7 @@ public class Level_Scores {
             lastLevel++;
             checkLevel = true;
         } else if (score > 1650 && score <= 2050) {
-           level = 8;
+            level = 8;
             countOfLevel++;
             lastLevel++;
             checkLevel = true;
@@ -60,7 +60,7 @@ public class Level_Scores {
             lastLevel++;
             checkLevel = true;
         } else if (score > 2500 && score <= 3000) {
-           level = 10;
+            level = 10;
             countOfLevel++;
             lastLevel++;
             checkLevel = true;
@@ -148,11 +148,10 @@ public class Level_Scores {
     public void moves() {
         move--;
 
-        if (move == 0 || checkLevel ) {
+        if (move == 0 || (checkLevel)) {
             PopoutWindow popoutWindow = new PopoutWindow();
-
             popoutWindow.show();
-
+            checkLevel = false;
         }
     }
 
@@ -163,9 +162,11 @@ public class Level_Scores {
     public int getmoves() {
         return move;
     }
-    public int getLevel () {
-    return level ;
+
+    public int getLevel() {
+        return level;
     }
+
     public int getcountOfLevel() {
         return countOfLevel;
     }
@@ -173,13 +174,13 @@ public class Level_Scores {
     public int getLastLevel() {
 
         return lastLevel;
-    
+
     }
-    
-    public int setScore (int score){
-    
-    this.score= score ;
-    return 0;
+
+    public int setScore(int score) {
+
+        this.score = score;
+        return 0;
     }
-    
+
 }

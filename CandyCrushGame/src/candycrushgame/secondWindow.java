@@ -87,7 +87,7 @@ public class secondWindow {
 
                 String buttonId = "button_" + i; // generate unique id for each button
                 String imageId = "image_" + imagePath.hashCode(); // generate unique id for each image
-
+                // System.out.println(imageId);
                 button.setId(buttonId);
                 button.setOnAction(e -> logic.handleButtonClick(button, gridPane, selectedButtons));
 

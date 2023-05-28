@@ -22,9 +22,9 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 class btnpop extends Button {
-    
+
     public btnpop(String s) {
-        
+
         setMinSize(270, 40);
         setText(s);
         setOpacity(0.8);
@@ -33,55 +33,57 @@ class btnpop extends Button {
 }
 
 public class PopoutWindow extends Stage {
-    
+
     Level_Scores levelScores = new Level_Scores();
-    
+
     public PopoutWindow() {
         // Create the layout for the popout window
         HBox layout1 = new HBox(10);
         HBox layout2 = new HBox(10);
         HBox layout3 = new HBox(10);
         VBox root = new VBox();
-        //padding
+        // padding
         layout2.setPadding(new Insets(7));
         // center
         layout1.setAlignment(Pos.BASELINE_CENTER);
         layout2.setAlignment(Pos.BASELINE_CENTER);
         layout3.setAlignment(Pos.BASELINE_CENTER);
         Label lbl = new Label();
-        if (( levelScores.getmoves() >= 0 && levelScores.getcountOfLevel() > levelScores.getLastLevel () ) || (levelScores.getmoves() == 0 && levelScores.getcountOfLevel() == levelScores.getLastLevel () +1)) {
-            lbl.setText("Congratulation");} 
-        else {//if ( levelScores.getmoves() < 0 ){
-           
-        lbl.setText("GameOver");} 
-        //create Label
+        if ((levelScores.getmoves() > 0 && levelScores.getcountOfLevel() > levelScores.getLastLevel())
+                || (levelScores.getmoves() == 0 && levelScores.getcountOfLevel() == levelScores.getLastLevel() + 1)) {
+            lbl.setText("Congratulation");
+        } else {// if ( levelScores.getmoves() < 0 ){
 
-        //lbl size
+            lbl.setText("GameOver");
+        }
+        // create Label
+
+        // lbl size
         lbl.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
         lbl.setFont(new Font("Cambria", 32));
         lbl.setPadding(new Insets(7));
         lbl.setTextFill(Color.PURPLE);
-        //    lbl.setTextFill(Color.PURPLE);
-//        lbl.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE, null, new Insets(10))));
+        // lbl.setTextFill(Color.PURPLE);
+        // lbl.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE, null,
+        // new Insets(10))));
         lbl.setOpacity(0.8);
 
         // create buttons
         btnpop newgamebtn = new btnpop("New Game");
         newgamebtn.setOnAction(e -> {
-            
+
             levelScores.setMove(15);
             secondWindow.movesLbl1.setText("" + levelScores.getmoves());
-            secondWindow.Level1.setText("" + levelScores.setScore (0));
             this.close();
         });
         btnpop closeButton = new btnpop("Close");
         // set close button on action
         closeButton.setOnAction(e -> {
-            
+
             Alert A = new Alert(Alert.AlertType.CONFIRMATION);
             A.setTitle("Confirm Exit");
             A.setContentText("Are you sure , you want to exit ?");
-//          A.setContentText("Pay attention please, All unsaved changes will be lost.");
+            // A.setContentText("Pay attention please, All unsaved changes will be lost.");
             Optional<ButtonType> result = A.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 Platform.exit();
@@ -95,11 +97,12 @@ public class PopoutWindow extends Stage {
 
         // create an Image object from the file path
         String projectDir = System.getProperty("user.dir"); // get current project direction
-        String img_dir = "\\src\\image\\popout.jpg"; //image dir
+        String img_dir = "\\src\\image\\popout.jpg"; // image dir
         Image image = new Image("file:" + projectDir + img_dir);
 
         // create a BackgroundImage object with the Image
-        BackgroundImage backgroundImage = new BackgroundImage(image, null, null, null, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
+        BackgroundImage backgroundImage = new BackgroundImage(image, null, null, null,
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
 
         // create a Background object with the BackgroundImage
         Background background = new Background(backgroundImage);
@@ -116,7 +119,7 @@ public class PopoutWindow extends Stage {
         // Set the scene for the popout window
         this.setScene(scene);
         this.setTitle("Candy Crush");
-        
+
     }
-    
+
 }
