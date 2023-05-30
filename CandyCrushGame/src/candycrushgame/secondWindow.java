@@ -105,11 +105,12 @@ public class secondWindow {
         }
         
         // Creating objection of level & scores
-        levelScores.loadLevelScore();
+        // levelScores.loadLevel();
         lvl = levelScores.level();
+        
         sc = levelScores.getScore();
         mv = levelScores.getmoves() ;
-         
+        
         // levelScores.saveLevelScore();
         
 

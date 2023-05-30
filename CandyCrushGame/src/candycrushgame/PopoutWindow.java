@@ -35,6 +35,7 @@ class btnpop extends Button {
 public class PopoutWindow extends Stage {
 
     Level_Scores levelScores = new Level_Scores();
+    public Label lbl;
 
     public PopoutWindow() {
         // Create the layout for the popout window
@@ -48,14 +49,17 @@ public class PopoutWindow extends Stage {
         layout1.setAlignment(Pos.BASELINE_CENTER);
         layout2.setAlignment(Pos.BASELINE_CENTER);
         layout3.setAlignment(Pos.BASELINE_CENTER);
-        Label lbl = new Label();
-        if ((levelScores.getmoves() > 0 && levelScores.getcountOfLevel() > levelScores.getLastLevel())
-                || (levelScores.getmoves() == 0 && levelScores.getcountOfLevel() == levelScores.getLastLevel() + 1)) {
-            lbl.setText("Congratulation");
-        } else {// if ( levelScores.getmoves() < 0 ){
+        lbl = new Label();
+        // if ((levelScores.getmoves() > 0 && levelScores.getcountOfLevel() >
+        // levelScores.getLastLevel())
+        // || (levelScores.getmoves() == 0 && levelScores.getcountOfLevel() ==
+        // levelScores.getLastLevel() + 1)) {
+        // lbl.setText("Congratulation");
+        // levelScores.saveLevelScore();
+        // } else {// if ( levelScores.getmoves() < 0 ){
 
-            lbl.setText("GameOver");
-        }
+        // lbl.setText("GameOver");
+        // }
         // create Label
 
         // lbl size
@@ -63,17 +67,20 @@ public class PopoutWindow extends Stage {
         lbl.setFont(new Font("Cambria", 32));
         lbl.setPadding(new Insets(7));
         lbl.setTextFill(Color.PURPLE);
-        // lbl.setTextFill(Color.PURPLE);
-        // lbl.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE, null,
-        // new Insets(10))));
         lbl.setOpacity(0.8);
 
         // create buttons
         btnpop newgamebtn = new btnpop("New Game");
-        newgamebtn.setOnAction(e -> {
+        newgamebtn.setOnAction(event -> {
 
-            levelScores.setMove(15);
-            secondWindow.movesLbl1.setText("" + levelScores.getmoves());
+            levelScores.setScore(0);
+            // try {
+            //     secondWindow.scorelbl1.setText("" + levelScores.getScore());
+            // } catch (Exception e) {
+            //     // Handle the exception here
+            //     System.out.println("An error occurred while setting the score label: " + e.getMessage());
+            // }
+            
             this.close();
         });
         btnpop closeButton = new btnpop("Close");

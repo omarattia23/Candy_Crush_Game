@@ -72,7 +72,7 @@ public class Main extends Application {
         });
 
         primaryStage.setTitle("Candy Crush");
-        primaryStage.setResizable(false);
+        // primaryStage.setResizable(false);
         primaryStage.show();
         
 

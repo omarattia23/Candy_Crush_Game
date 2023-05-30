@@ -29,9 +29,7 @@ public class firstWindow {
 
         // creating 2 buttons
         newgamebtn = new btn("NEW GAME ");
-        // Button btnscores=new Button("SCORES ");
         btn exitbtn = new btn("EXIT ");
-        // btnnewgame.setStyle("-fx-background-color: #ff0000;");
 
         // creating vertical box (vbox) and add 3 Button in vbox
         // VBox(10) to make 10 pixel between button

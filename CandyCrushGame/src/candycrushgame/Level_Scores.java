@@ -8,76 +8,63 @@ public class Level_Scores {
     public static int countOfLevel;
     public static int lastLevel;
     public boolean checkLevel = false;
-    private int score = 0;
-    private static int move = 15;
+    private int score;
+    private int move = 15;
     private int level;
     private String projectDir = System.getProperty("user.dir");
 
     public int level() {
+        /*--------------------------------------------------------------------------------------------*/
+        /*----------------------- Set level according to the score --------------------------------- */
+        /*------------------------------------------------------------------------------------------*/
+        int currentLevel = level;
         if (score <= 100) {
             level = 1;
-            countOfLevel = 1;
-            lastLevel = 0;
 
         } else if (score > 100 && score <= 250) {
             level = 2;
-            countOfLevel++;
-            lastLevel++;
-            checkLevel = true;
         } else if (score > 250 && score <= 450) {
             level = 3;
-            countOfLevel++;
-            lastLevel++;
-            checkLevel = true;
         } else if (score > 450 && score <= 700) {
             level = 4;
-            countOfLevel++;
-            lastLevel++;
-            checkLevel = true;
         } else if (score > 700 && score <= 1000) {
             level = 5;
-            countOfLevel++;
-            lastLevel++;
-            checkLevel = true;
         } else if (score > 1000 && score <= 1300) {
             level = 6;
-            countOfLevel++;
-            lastLevel++;
-            checkLevel = true;
         } else if (score > 1300 && score <= 1650) {
             level = 7;
-            countOfLevel++;
-            lastLevel++;
-            checkLevel = true;
         } else if (score > 1650 && score <= 2050) {
             level = 8;
-            countOfLevel++;
-            lastLevel++;
-            checkLevel = true;
         } else if (score > 2050 && score <= 2500) {
             level = 9;
-            countOfLevel++;
-            lastLevel++;
-            checkLevel = true;
         } else if (score > 2500 && score <= 3000) {
             level = 10;
-            countOfLevel++;
-            lastLevel++;
-            checkLevel = true;
+        }
+        System.out.println(level);
+        System.out.println(currentLevel);
+        if (getmoves() >= 0 && level > currentLevel && currentLevel > 0) {
+            PopoutWindow popoutWindow = new PopoutWindow();
+            popoutWindow.lbl.setText("Congratulation");
+            move = 15;
+            secondWindow.movesLbl1.setText("" + getmoves());
+            popoutWindow.show();
+            saveLevel();
+        } else if (getmoves() == 0 && level == currentLevel && currentLevel > 0) {
+            PopoutWindow popoutWindow = new PopoutWindow();
+            popoutWindow.lbl.setText("Game Over");
+            move = 15;
+            score = 0;
+            getScore();
+            secondWindow.movesLbl1.setText("" + getmoves());
+            popoutWindow.show();
         }
         return level;
     }
 
-    public void score1() {
-        score += 10;
-
-    }
-
-    public void score2() {
-        score += 15;
-    }
-
     public String getScore() {
+        /*--------------------------------------------------------------------------------------------*/
+        /*----------------------- Set record score according to the level--------------------------- */
+        /*------------------------------------------------------------------------------------------*/
         String maxScore = "";
         switch (level) {
             case 1 ->
@@ -106,7 +93,10 @@ public class Level_Scores {
         return ("" + score + maxScore);
     }
 
-    public void saveLevelScore() {
+    public void saveLevel() {
+        /*-------------------------------------------------------------------------------------------------*/
+        /*--------------------- save level in txt file for the next game ---------------------------------*/
+        /*-----------------------------------------------------------------------------------------------*/
         try {
 
             File file = new File(projectDir + "\\src\\level_score.txt");
@@ -114,7 +104,7 @@ public class Level_Scores {
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write("Level: " + level);
             bw.newLine();
-            bw.write("Score: " + score);
+            bw.write("Score: " + getScore());
             bw.close();
             System.out.println("Level and score saved to file.");
             fw.close();
@@ -124,7 +114,10 @@ public class Level_Scores {
         }
     }
 
-    public void loadLevelScore() {
+    public int loadLevel() {
+        /*-------------------------------------------------------------------------------------------------*/
+        /*----------------------------------- load level value -------------------------------------------*/
+        /*-----------------------------------------------------------------------------------------------*/
         try {
             File file = new File(projectDir + "\\src\\level_score.txt");
 
@@ -133,26 +126,34 @@ public class Level_Scores {
                 String line = scanner.nextLine();
                 if (line.startsWith("Level: ")) {
                     level = Integer.parseInt(line.substring(7));
-                } else if (line.startsWith("Score: ")) {
-                    score = Integer.parseInt(line.substring(7));
                 }
+                else if (line.startsWith("Score: ")) {
+                    score = Integer.parseInt(line.substring(7,line.indexOf("/")));
             }
             scanner.close();
             System.out.println("Level and score loaded from file.");
-        } catch (IOException e) {
+        }
+    }catch (IOException e) {
             System.out.println("Error occurred while loading level and score from file.");
             e.printStackTrace();
         }
+        return level;
     }
 
     public void moves() {
         move--;
 
-        if (move == 0 || (checkLevel)) {
-            PopoutWindow popoutWindow = new PopoutWindow();
-            popoutWindow.show();
-            checkLevel = false;
-        }
+    }
+
+    /*-------------------------------------------------------------------------------------------------*/
+    /*----------------------------------- return values and get values -------------------------------*/
+    /*-----------------------------------------------------------------------------------------------*/
+    public void score1() {
+        score += 10;
+    }
+
+    public void score2() {
+        score += 15;
     }
 
     public void setMove(int move) {
@@ -177,10 +178,9 @@ public class Level_Scores {
 
     }
 
-    public int setScore(int score) {
+    public void setScore(int score) {
 
         this.score = score;
-        return 0;
     }
 
 }
