@@ -20,7 +20,6 @@ public class Level_Scores {
         int currentLevel = level;
         if (score <= 100) {
             level = 1;
-
         } else if (score > 100 && score <= 250) {
             level = 2;
         } else if (score > 250 && score <= 450) {
